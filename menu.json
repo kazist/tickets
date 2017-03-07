@@ -1,0 +1,19 @@
+{
+    "title": "Tickets",
+    "description": "Tickets Advertisement",
+    "alias": "tickets",
+    "icon": "fa-picture-o",
+    "home_link": "tickets\/tickets",
+    "is_core": "1",
+    "menulist": [{
+            "title": "Tickets",
+            "alias": "admin_tickets_tickets",
+            "url": "admin/tickets/tickets",
+            "children": []
+        }, {
+            "title": "Categories",
+            "alias": "admin_tickets_categories",
+            "url": "admin/tickets/categories",
+            "children": []
+        }]
+}

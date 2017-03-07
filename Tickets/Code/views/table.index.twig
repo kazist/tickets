@@ -1,0 +1,62 @@
+{# empty Twig template #}
+
+{% import "form.macro.twig" as forms %}
+
+{{ set_assets('applications/Projects/assets/css/projects.css') }}
+{{ set_assets('applications/Projects/assets/js/projects.js') }}
+
+<br>
+
+<form action="{{ generate_url('tickets.tickets') }}" method="POST">
+
+    <div>
+        <div class="col-md-8">
+            <h1>Tickets List</h1>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-success btn-sm pull-right" href="{{ generate_url('tickets.tickets.add') }}">
+                <i class="fa fa-plus"></i>
+                Add Ticket
+            </a>
+        </div>
+    </div>
+
+    <div class="clear-both"></div>
+
+    <div class="tickets-list">
+        {% if items|length > 0 %}
+            {% for item in items %}
+
+                <div class="ticket-item tag-box-v1 box-shadow shadow-effect-2 ">
+
+                    <h4>
+
+                        <a href="{{ generate_url('tickets.tickets.detail', {'id':item.id}) }}">
+                            {{ item.title }}
+                        </a>
+
+                        <a class="btn btn-primary btn-xs" href="{{ generate_url('tickets.tickets.edit', {'id':item.id}) }}">
+                            <i class="fa fa-pencil"></i> 
+                            Edit
+                        </a>
+                    </h4>
+
+
+                    <div class="tickets-desc">
+                        {{ item.description|raw }}  
+                    </div>
+
+                    <div class="clear-both"></div>
+                </div>
+
+            {% endfor %}            
+        {% endif %}
+
+        {% include "items.pagination.twig"%}
+
+    </div>
+
+    {{ forms.input('_token' ) }} 
+
+</form>
+

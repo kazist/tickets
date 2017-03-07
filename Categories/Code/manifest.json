@@ -1,0 +1,13 @@
+{
+    "name": "categories",
+    "title": "Tickets Categories",
+    "explanation": "Tickets Categories",
+    "description": "Tickets Categories",
+    "version": 13,
+    "has_view": "1",
+    "tie_field": "0",
+    "email_on_new": "0",
+    "email_on_edit": "0",
+    "email_on_delete": "0",
+    "date_file_modified": "2016-12-10 12:59:49"
+}

@@ -1,0 +1,221 @@
+{
+    "frontend": [{
+            "title": "Ticket List",
+            "description": "Management of Tickets.",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\TicketsController::indexAction",
+            "permissions": "can_view, can_viewown",
+            "unique_name": "tickets.tickets",
+            "route": "tickets/tickets",
+            "arguments": "",
+            "keywords": "ticket, list",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 0,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"],
+                "MODERATOR": ["can_view", "can_viewown"],
+                "USER": ["can_viewown"]
+            }
+        }, {
+            "title": "Add Ticket",
+            "description": "Add Ticket.",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\TicketsController::addAction",
+            "unique_name": "tickets.tickets.add",
+            "route": "tickets/tickets/add",
+            "permissions": "can_add",
+            "arguments": {},
+            "keywords": "ticket, add",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 0,
+            "roles": {
+                "SUPER_ADMIN": ["can_add"],
+                "ADMIN": ["can_add"],
+                "MODERATOR": ["can_add"],
+                "USER": ["can_add"]
+            }
+        }, {
+            "title": "Edit Ticket {{ item.name }}",
+            "description": "Edit Ticket {{ item.name }}.",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\TicketsController::editAction",
+            "unique_name": "tickets.tickets.edit",
+            "route": "tickets/tickets/edit/{id}",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "ticket, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 0,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"],
+                "MODERATOR": ["can_add", "can_write", "can_writeown"],
+                "USER": ["can_add", "can_writeown"]
+            }
+        }, {
+            "title": "Ticket Detail: {{ item.name }}",
+            "description": "Ticket Detail: {{ item.name }}",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\TicketsController::detailAction",
+            "unique_name": "tickets.tickets.detail",
+            "route": "tickets/tickets/detail/{id}",
+            "permissions": "can_view, can_viewown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "ticket, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 0,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"],
+                "MODERATOR": ["can_view", "can_viewown"],
+                "USER": ["can_viewown"]
+            }
+        }, {
+            "title": "Ticket Save: {{ item.name }}",
+            "description": "Ticket Save: {{ item.name }}",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\TicketsController::saveAction",
+            "unique_name": "tickets.tickets.save",
+            "route": "tickets/tickets/save",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "ticket, save, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 0,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"],
+                "MODERATOR": ["can_add", "can_write", "can_writeown"],
+                "USER": ["can_add", "can_writeown"]
+            }
+        }]
+    ,
+    "backend": [{
+            "title": "General Tasks",
+            "description": "General Tasks.",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\Admin\\TicketsController::taskAction",
+            "unique_name": "admin.tickets.tickets.task",
+            "route": "admin/tickets/tickets/task",
+            "permissions": "can_write",
+            "arguments": "",
+            "keywords": "tickets, task",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_write"],
+                "ADMIN": ["can_write"]
+            }
+        }, {
+            "title": "Ticket List",
+            "description": "Management of Tickets.",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\Admin\\TicketsController::indexAction",
+            "permissions": "can_view, can_viewown",
+            "unique_name": "admin.tickets.tickets",
+            "route": "admin/tickets/tickets",
+            "arguments": "",
+            "keywords": "ticket, list",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"]
+            }
+        }, {
+            "title": "Add Ticket",
+            "description": "Add Ticket.",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\Admin\\TicketsController::addAction",
+            "unique_name": "admin.tickets.tickets.add",
+            "route": "admin/tickets/tickets/add",
+            "permissions": "can_add",
+            "arguments": {},
+            "keywords": "ticket, add",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add"],
+                "ADMIN": ["can_add"]
+            }
+        }, {
+            "title": "Edit Ticket {{ item.name }}",
+            "description": "Edit Ticket {{ item.name }}.",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\Admin\\TicketsController::editAction",
+            "unique_name": "admin.tickets.tickets.edit",
+            "route": "admin/tickets/tickets/edit/{id}",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "ticket, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"]
+            }
+        }, {
+            "title": "Ticket Detail: {{ item.name }}",
+            "description": "Ticket Detail: {{ item.name }}",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\Admin\\TicketsController::detailAction",
+            "unique_name": "admin.tickets.tickets.detail",
+            "route": "admin/tickets/tickets/detail/{id}",
+            "permissions": "can_view, can_viewown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "ticket, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"]
+            }
+        }, {
+            "title": "Ticket Delete: {{ item.name }}",
+            "description": "Ticket Delete: {{ item.name }}",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\Admin\\TicketsController::deleteAction",
+            "unique_name": "admin.tickets.tickets.delete",
+            "route": "admin/tickets/tickets/delete/{id}",
+            "permissions": "can_delete, can_deleteown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "ticket, delete, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_delete", "can_deleteown"],
+                "ADMIN": ["can_delete", "can_deleteown"]
+            }
+        }, {
+            "title": "Ticket Save: {{ item.name }}",
+            "description": "Ticket Save: {{ item.name }}",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\Admin\\TicketsController::saveAction",
+            "unique_name": "admin.tickets.tickets.save",
+            "route": "admin/tickets/tickets/save",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "ticket, save, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"]
+            }
+        }]
+} 	

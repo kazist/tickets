@@ -1,0 +1,86 @@
+{# empty Twig template #}
+
+{% import "form.macro.twig" as forms %}
+
+{% if  document.user.id  %}
+    {% set readonly = true %}
+    {% set item_name =  item.name|default(document.user.name) %}
+    {% set item_username =  item.username|default(document.user.username) %}
+    {% set item_email =  item.email|default(document.user.email) %}
+    {% set item_phone =  item.phone|default(document.user.phone) %}
+{% else %}
+    {% set readonly = false %}
+    {% set item_name =  '' %}
+    {% set item_username = '' %}
+    {% set item_email =  '' %}
+    {% set item_phone = '' %}
+{% endif %}
+
+<h1 class="component-header">Add/Edit Ticket</h1>
+<hr>
+
+
+
+<form id="main-edit-form" action="{{ generate_url('tickets.tickets.save') }}" class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
+    <div class="add-edit-ticket">
+        <div class="well well-sm">Ticket Detail </div>
+
+        <div class="ticket-detail-form">
+            <div>
+                <div class="col-sm-6">
+                    {{ forms.input('title', 'text', item.title, 'Title') }}
+                </div>
+                <div class="col-sm-6">
+                    {{ forms.input('category_id', 'select', item.category_id, 'Category', null, null, null, null, json_object.fields.category_id.parameters.options) }}
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div>
+                <b>Ticket Content</b><br>
+                {{ forms.input('description', 'textarea', item.description) }}
+            </div>
+
+        </div>
+
+        {% if  document.user.id  %}
+            {{ forms.input('id', 'hidden', item.id) }}
+            <br>
+        {% endif %}
+
+        <div>
+            <div class="col-sm-6">
+                {{ forms.input('username', 'username', item_username, 'Username', null, null, null, readonly) }}
+                {{ forms.input('email', 'email', item_email, 'Email', null, null, null, readonly) }}
+            </div>
+            <div class="col-sm-6">
+                {{ forms.input('name', 'name', item_name, 'Name', null, null, null, readonly) }}
+                {{ forms.input('phone', 'phone', item_phone, 'Phone', null, null, null, readonly) }}
+            </div>
+
+            {% if  document.user.id  %}
+                {{ forms.input('name', 'hidden', item_name) }}
+                {{ forms.input('username', 'hidden', item_username) }}
+                {{ forms.input('email', 'hidden', item_email) }}
+                {{ forms.input('phone', 'hidden', item_phone) }}
+            {% endif %}
+            </s>
+
+            <a class="btn btn-danger btn-sm" href="{{ generate_url('tickets.tickets') }}" title='Cancel'>Cancel</a>
+            <input class="btn btn-success btn-sm" name="id" type="submit" value="Save">
+
+            <br>
+            <br>
+        </div>
+
+        {{ forms.input('_token' ) }} 
+
+</form>
+<style>
+    #description{
+        width:100% !important;
+        max-width:100% !important;
+        height: 100px;
+    }
+</style>
+

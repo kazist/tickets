@@ -1,0 +1,9 @@
+{
+    "name": "tickets",
+    "title": "Tickets and Contact Manager",
+    "icon": "icons\/tickets.png",
+    "extension": "component",
+    "path": "tickets\/",
+    "description": "Tickets and Contact Manager",
+    "version": 1
+}

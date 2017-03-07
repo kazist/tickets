@@ -1,0 +1,85 @@
+<?php
+
+/*
+ * This file is part of Kazist Framework.
+ * (c) Dedan Irungu <irungudedan@gmail.com>
+ *  For the full copyright and license information, please view the LICENSE file that was distributed with this source code.
+ * 
+ */
+
+namespace Tickets\Tickets\Code\Models;
+
+defined('KAZIST') or exit('Not Kazist Framework');
+
+use Kazist\Model\BaseModel;
+use Kazist\KazistFactory;
+use Kazist\Service\Email\Email;
+use Search\Indexes\Code\Classes\ContentIndexing;
+use Kazist\Service\Database\Query;
+
+/**
+ * Description of MarketplaceModel
+ *
+ * @author sbc
+ */
+class TicketsModel extends BaseModel {
+
+    public function appendSearchQuery($query) {
+
+        $factory = new KazistFactory();
+
+        $user = $factory->getUser();
+
+        if (!WEB_IS_ADMIN) {
+
+            $query = parent:: appendSearchQuery($query);
+
+            if ($user->id) {
+                $query->where('tt.created_by=' . $user->id);
+            }
+
+            $query->orderBy('tt.id ', 'DESC');
+
+            return $query;
+        }
+    }
+
+    public function save($form = '') {
+
+
+        $id = parent::save($form);
+
+        if ($id) {
+
+            $ticket = parent::getRecord($id);
+
+            $this->sendEmailToAdmin($form, $ticket, $id);
+        }
+
+        return $id;
+    }
+
+    public function sendEmailToAdmin($form, $ticket, $id) {
+
+        $email = new Email();
+        $factory = new KazistFactory();
+
+        if ($id && !$form['id']) {
+
+            $ticket = ($ticket != '') ? $ticket : parent::getRecord($id);
+
+            $member_query = $factory->getQueryBuilder('#__users_users', 'uu', array('is_admin=1'));
+            $members = $member_query->loadObjectList();
+
+            foreach ($members as $member) {
+
+                $parameters = array();
+                $parameters['user'] = $member;
+                $parameters['ticket'] = $ticket;
+
+                $email->sendDefinedLayoutEmail('tickets.tickets.admin.added', $member->email, $parameters);
+            }
+        }
+    }
+
+}

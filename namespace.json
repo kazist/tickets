@@ -1,0 +1,10 @@
+{
+    "TicketsCategories": {
+        "namespace": "Tickets\\Categories",
+        "controller": "CategoriesController"
+    },
+    "TicketsTickets": {
+        "namespace": "Tickets\\Tickets",
+        "controller": "TicketsController"
+    }
+}

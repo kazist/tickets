@@ -1,0 +1,10 @@
+{
+    "title": "Tickets",
+    "alias": "tickets",
+    "table_name": "tickets_tickets",
+    "title_field": "title",
+    "content_field": "description",
+    "image_field": "",
+    "published": "1",
+    "is_processed": "0"
+}

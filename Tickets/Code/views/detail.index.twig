@@ -1,0 +1,56 @@
+{# empty Twig template #}
+
+{% import "form.macro.twig" as forms %}
+
+
+<br>
+
+<form class="ticket-single-form form-horizontal" action="{{ generate_url('tickets.tickets.save') }}" method="POST">
+
+    <div class="ticket-single">
+
+        <h1 class="component-header">
+            {{ item.title }}
+        </h1>
+
+        <div class="clear-both"></div>
+
+
+        <blockquote>
+            <small>
+                {{ item.description|nl2br|raw }}
+            </small>
+        </blockquote>
+
+        <div class="headline">
+            <h4>Replies</h4>
+        </div>
+
+        {{ forms.input('comment', 'comment') }}
+
+
+        <hr class="bg-grey">
+
+    </div>
+
+    <div class="ticket-submit-button text-center" style="display:none;">
+        <input class="btn btn-success btn-sm" name="id" value="Save" type="submit">
+    </div>
+
+    {{ forms.input('id', 'hidden', item.id) }}
+
+    <input class="form-id" name="id" value="{{ item.id }}" type="hidden">             
+
+    {{ forms.input('_token' ) }} 
+
+</form>
+
+<style>
+    #kazi_reply_comments_post{
+        width:100% !important;
+        max-width:100% !important;
+        height: 100px;
+    }
+</style>
+
+
