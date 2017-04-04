@@ -1,9 +1,9 @@
 {
-    "name": "tickets",
+    "name": "kazist/tickets",
     "title": "Tickets and Contact Manager",
     "icon": "icons\/tickets.png",
     "extension": "component",
-    "path": "tickets\/",
+    "path": "applications/Tickets/",
     "description": "Tickets and Contact Manager",
     "version": 1
 }
