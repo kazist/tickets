@@ -15,5 +15,15 @@
             "alias": "admin_tickets_categories",
             "url": "admin/tickets/categories",
             "children": []
+        }, {
+            "title": "Departments",
+            "alias": "admin_tickets_departments",
+            "url": "admin/tickets/departments",
+            "children": []
+        }, {
+            "title": "Teams",
+            "alias": "admin_tickets_teams",
+            "url": "admin/tickets/teams",
+            "children": []
         }]
 }
