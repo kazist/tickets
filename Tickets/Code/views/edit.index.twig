@@ -26,20 +26,30 @@
         <div class="well well-sm">Ticket Detail </div>
 
         <div class="ticket-detail-form">
+            <div class="col-sm-12">
+                <label>Title</label>
+                {{ forms.input('title', 'text', item.title) }}
+            </div>
             <div>
                 <div class="col-sm-6">
-                    {{ forms.input('title', 'text', item.title, 'Title') }}
+                    <label>Department</label>
+                    {{ forms.input('department_id', 'select', item.department_id, null, null, null, null, null, json_object.fields.department_id.parameters.options) }}
                 </div>
                 <div class="col-sm-6">
-                    {{ forms.input('category_id', 'select', item.category_id, 'Category', null, null, null, null, json_object.fields.category_id.parameters.options) }}
+                    <label>Category</label>
+                    {{ forms.input('category_id', 'select', item.category_id, null, null, null, null, null, json_object.fields.category_id.parameters.options) }}
                 </div>
             </div>
 
             <div class="clearfix"></div>
-            <div>
+            <br>
+            <div class="col-sm-12">
                 <b>Ticket Content</b><br>
                 {{ forms.input('description', 'textarea', item.description) }}
             </div>
+
+            <div class="clearfix"></div>
+            <br>
 
         </div>
 
@@ -72,8 +82,9 @@
             <br>
             <br>
         </div>
+    </div>
 
-        {{ forms.input('_token' ) }} 
+    {{ forms.input('_token' ) }} 
 
 </form>
 <style>

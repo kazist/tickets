@@ -2,21 +2,26 @@
     "layout": [{
             "tracking_id": "1",
             "unique_name": "tickets.tickets.admin.added",
-            "subject": "New Tickets For [{{ ticket.title }}] Ticket.",
-            "sms": "New Tickets For [{{ ticket.title }}] Ticket.",
+            "subject": "New Tickets: [{{ ticket.title }}].",
+            "sms": "New Tickets [{{ ticket.title }}].",
             "body": "New Tickets"
         }, {
-            "tracking_id": "1",
+            "tracking_id": "2",
+            "unique_name": "tickets.tickets.team.admin.added",
+            "subject": "New Tickets: [{{ ticket.title }}].",
+            "sms": "New Tickets: [{{ ticket.title }}].",
+            "body": "New Tickets"
+        }, {
+            "tracking_id": "3",
             "unique_name": "tickets.tickets.admin.comment.added",
             "subject": "New Comment For [{{ ticket.title }}] Ticket.",
             "sms": "New Comment For [{{ ticket.title }}] Ticket.",
             "body": "New Comment"
         }, {
-            "tracking_id": "2",
+            "tracking_id": "4",
             "unique_name": "tickets.tickets.owner.comment.added",
             "subject": "New Comment For [{{ ticket.title }}] Ticket.",
             "sms": "New Comment For [{{ ticket.title }}] Ticket.",
             "body": "New Comment"
-
         }]
 }

@@ -23,7 +23,7 @@
                                                 "date_created",
                                                 "name",
                                                 "email",
-                                                "department"
+                                                "department_id"
                                             ]
                                         }
                                     }
@@ -111,14 +111,18 @@
             }
         },
         {
+            "dropdown_filter": "0",
+            "nullable": "0",
             "name": "name",
             "html_type": "text",
             "mysql_type": "varchar",
             "view_side": "",
             "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
             "size": "",
             "readonly": "0",
-            "default_value": "",
             "format_value": "",
             "parameters": {
                 "general": [],
@@ -132,14 +136,18 @@
             }
         },
         {
+            "dropdown_filter": "0",
+            "nullable": "0",
             "name": "email",
             "html_type": "text",
             "mysql_type": "varchar",
             "view_side": "",
             "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
             "size": "",
             "readonly": "0",
-            "default_value": "",
             "format_value": "",
             "parameters": {
                 "general": [],
@@ -153,14 +161,18 @@
             }
         },
         {
-            "name": "department",
+            "dropdown_filter": "0",
+            "nullable": "0",
+            "name": "department_id",
             "html_type": "select",
             "mysql_type": "int",
             "view_side": "",
             "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
             "size": "",
             "readonly": "0",
-            "default_value": "",
             "format_value": "",
             "parameters": {
                 "general": [],
@@ -308,8 +320,8 @@
             "tt.title",
             "tt.name",
             "tt.email",
-            "tt.department",
-            "tt_5285.title AS department_title",
+            "tt.department_id",
+            "tt_5284.title AS department_id_title",
             "tt.created_by",
             "tt.date_created",
             "tt.modified_by",
@@ -318,9 +330,9 @@
         "leftjoin": [
             {
                 "table": "Tickets\\Tickets\\Code\\Tables\\Tickets",
-                "alias": "tt_5285",
+                "alias": "tt_5284",
                 "name": "#__tickets_tickets",
-                "on": "tt.department = tt_5285.id"
+                "on": "tt.department_id = tt_5284.id"
             }
         ]
     }

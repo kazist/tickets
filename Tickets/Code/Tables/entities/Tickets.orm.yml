@@ -16,6 +16,11 @@ Tickets\Tickets\Code\Tables\Tickets:
       type: integer
       length: 11
       nullable: true
+    department_id:
+      name: department_id
+      type: integer
+      length: 11
+      nullable: false
     name:
       name: name
       type: string
@@ -61,6 +66,8 @@ Tickets\Tickets\Code\Tables\Tickets:
   indexes:
     category_id_index:
       columns: [category_id]
+    department_id_index:
+      columns: [department_id]
   lifecycleCallbacks:
     prePersist:
       - onPrePersist

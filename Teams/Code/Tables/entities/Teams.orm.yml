@@ -15,14 +15,17 @@ Tickets\Teams\Code\Tables\Teams:
       name: name
       type: string
       length: 255
+      nullable: false
     email:
       name: email
       type: string
       length: 255
-    department:
-      name: department
+      nullable: false
+    department_id:
+      name: department_id
       type: integer
       length: 11
+      nullable: false
     created_by:
       name: created_by
       type: integer
@@ -42,8 +45,8 @@ Tickets\Teams\Code\Tables\Teams:
       type: datetime
       nullable: false
   indexes:
-    department_index:
-      columns: [department]
+    department_id_index:
+      columns: [department_id]
   lifecycleCallbacks:
     prePersist:
       - onPrePersist

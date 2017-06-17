@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Teams
  *
- * @ORM\Table(name="tickets_teams", indexes={@ORM\Index(name="department_index", columns={"department"})})
+ * @ORM\Table(name="tickets_teams", indexes={@ORM\Index(name="department_id_index", columns={"department_id"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
@@ -32,23 +32,23 @@ class Teams extends \Kazist\Table\BaseTable
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     protected $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     protected $email;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="department", type="integer", length=11)
+     * @ORM\Column(name="department_id", type="integer", length=11, nullable=false)
      */
-    protected $department;
+    protected $department_id;
 
     /**
      * @var integer
@@ -162,27 +162,27 @@ class Teams extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Set department
+     * Set departmentId
      *
-     * @param integer $department
+     * @param integer $departmentId
      *
      * @return Teams
      */
-    public function setDepartment($department)
+    public function setDepartmentId($departmentId)
     {
-        $this->department = $department;
+        $this->department_id = $departmentId;
 
         return $this;
     }
 
     /**
-     * Get department
+     * Get departmentId
      *
      * @return integer
      */
-    public function getDepartment()
+    public function getDepartmentId()
     {
-        return $this->department;
+        return $this->department_id;
     }
 
     /**

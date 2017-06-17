@@ -54,6 +54,7 @@ class TicketsModel extends BaseModel {
             $ticket = parent::getRecord($id);
 
             $this->sendEmailToAdmin($form, $ticket, $id);
+            $this->sendEmailToDepartment($form, $ticket, $id);
         }
 
         return $id;
@@ -78,6 +79,29 @@ class TicketsModel extends BaseModel {
                 $parameters['ticket'] = $ticket;
 
                 $email->sendDefinedLayoutEmail('tickets.tickets.admin.added', $member->email, $parameters);
+            }
+        }
+    }
+
+    public function sendEmailToDepartment($form, $ticket, $id) {
+
+        $email = new Email();
+        $factory = new KazistFactory();
+
+        if ($id && !$form['id']) {
+
+            $ticket = ($ticket != '') ? $ticket : parent::getRecord($id);
+            
+            $member_query = $factory->getQueryBuilder('#__tickets_teams', 'tt', array('department_id=' . $ticket->department_id));
+            $members = $member_query->loadObjectList();
+
+            foreach ($members as $member) {
+
+                $parameters = array();
+                $parameters['user'] = $member;
+                $parameters['ticket'] = $ticket;
+
+                $email->sendDefinedLayoutEmail('tickets.tickets.department.team.added', $member->email, $parameters);
             }
         }
     }

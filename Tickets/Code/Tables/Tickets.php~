@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Tickets
  *
- * @ORM\Table(name="tickets_tickets", indexes={@ORM\Index(name="category_id_index", columns={"category_id"})})
+ * @ORM\Table(name="tickets_tickets", indexes={@ORM\Index(name="category_id_index", columns={"category_id"}), @ORM\Index(name="department_id_index", columns={"department_id"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
@@ -35,6 +35,13 @@ class Tickets extends \Kazist\Table\BaseTable
      * @ORM\Column(name="category_id", type="integer", length=11, nullable=true)
      */
     protected $category_id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="department_id", type="integer", length=11)
+     */
+    protected $department_id;
 
     /**
      * @var string
@@ -67,7 +74,7 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=false)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     protected $description;
 
@@ -103,7 +110,7 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -114,6 +121,7 @@ class Tickets extends \Kazist\Table\BaseTable
      * Set title
      *
      * @param string $title
+     *
      * @return Tickets
      */
     public function setTitle($title)
@@ -126,7 +134,7 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -134,9 +142,10 @@ class Tickets extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Set category_id
+     * Set categoryId
      *
      * @param integer $categoryId
+     *
      * @return Tickets
      */
     public function setCategoryId($categoryId)
@@ -147,9 +156,9 @@ class Tickets extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Get category_id
+     * Get categoryId
      *
-     * @return integer 
+     * @return integer
      */
     public function getCategoryId()
     {
@@ -157,9 +166,34 @@ class Tickets extends \Kazist\Table\BaseTable
     }
 
     /**
+     * Set departmentId
+     *
+     * @param integer $departmentId
+     *
+     * @return Tickets
+     */
+    public function setDepartmentId($departmentId)
+    {
+        $this->department_id = $departmentId;
+
+        return $this;
+    }
+
+    /**
+     * Get departmentId
+     *
+     * @return integer
+     */
+    public function getDepartmentId()
+    {
+        return $this->department_id;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
+     *
      * @return Tickets
      */
     public function setName($name)
@@ -172,7 +206,7 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -183,6 +217,7 @@ class Tickets extends \Kazist\Table\BaseTable
      * Set username
      *
      * @param string $username
+     *
      * @return Tickets
      */
     public function setUsername($username)
@@ -195,7 +230,7 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -206,6 +241,7 @@ class Tickets extends \Kazist\Table\BaseTable
      * Set email
      *
      * @param string $email
+     *
      * @return Tickets
      */
     public function setEmail($email)
@@ -218,7 +254,7 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -229,6 +265,7 @@ class Tickets extends \Kazist\Table\BaseTable
      * Set phone
      *
      * @param string $phone
+     *
      * @return Tickets
      */
     public function setPhone($phone)
@@ -241,7 +278,7 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -252,6 +289,7 @@ class Tickets extends \Kazist\Table\BaseTable
      * Set description
      *
      * @param string $description
+     *
      * @return Tickets
      */
     public function setDescription($description)
@@ -264,7 +302,7 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -272,9 +310,9 @@ class Tickets extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Get created_by
+     * Get createdBy
      *
-     * @return integer 
+     * @return integer
      */
     public function getCreatedBy()
     {
@@ -282,9 +320,9 @@ class Tickets extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Get date_created
+     * Get dateCreated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -292,9 +330,9 @@ class Tickets extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Get modified_by
+     * Get modifiedBy
      *
-     * @return integer 
+     * @return integer
      */
     public function getModifiedBy()
     {
@@ -302,9 +340,9 @@ class Tickets extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Get date_modified
+     * Get dateModified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateModified()
     {
@@ -318,3 +356,4 @@ class Tickets extends \Kazist\Table\BaseTable
         // Add your code here
     }
 }
+
