@@ -7,23 +7,42 @@
                         "columns": [
                             {
                                 "name": "",
-                                "class_name": "col-sm-12",
+                                "class_name": "col-sm-8",
                                 "items": [
                                     {
                                         "group": {
                                             "name": "Teams Detail",
                                             "unique_name": "teams_detail",
-                                            "has_title": null,
-                                            "user_right": null,
-                                            "hide_on_new": null,
+                                            "has_title": 1,
+                                            "user_right": 0,
+                                            "hide_on_new": 0,
                                             "fields": [
-                                                "id",
-                                                "title",
-                                                "created_by",
-                                                "date_created",
                                                 "name",
                                                 "email",
-                                                "department_id"
+                                                "department_id",
+                                                "user_id",
+                                                "published"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "",
+                                "class_name": "col-sm-4",
+                                "items": [
+                                    {
+                                        "group": {
+                                            "name": "Modification Detail",
+                                            "unique_name": "modification_detail",
+                                            "has_title": 1,
+                                            "user_right": 0,
+                                            "hide_on_new": 0,
+                                            "fields": [
+                                                "date_modified",
+                                                "modified_by",
+                                                "date_created",
+                                                "created_by"
                                             ]
                                         }
                                     }
@@ -34,22 +53,21 @@
                 ]
             },
             "ommitted": [
-                "modified_by",
-                "date_modified"
+                "id"
             ]
         },
         "table": {
             "fields": [
-                "id",
-                "title",
-                "created_by",
-                "date_created"
+                "user_id",
+                "name",
+                "email",
+                "department_id"
             ],
             "has_label": [
-                "id",
-                "title",
-                "created_by",
-                "date_created"
+                "user_id",
+                "name",
+                "email",
+                "department_id"
             ]
         }
     },
@@ -66,31 +84,6 @@
             "name": "id",
             "html_type": "text",
             "mysql_type": "int",
-            "view_side": "",
-            "index": "",
-            "id_name": "",
-            "class_name": "",
-            "default_value": "",
-            "size": "",
-            "readonly": "",
-            "format_value": "",
-            "parameters": {
-                "general": [],
-                "source": [],
-                "save": {
-                    "view_side": "both",
-                    "index": ""
-                },
-                "media": [],
-                "payment": []
-            }
-        },
-        {
-            "dropdown_filter": "0",
-            "nullable": "0",
-            "name": "title",
-            "html_type": "text",
-            "mysql_type": "varchar",
             "view_side": "",
             "index": "",
             "id_name": "",
@@ -184,6 +177,60 @@
                     ],
                     "join_table_name": "tickets_tickets"
                 },
+                "save": {
+                    "view_side": "both",
+                    "index": ""
+                },
+                "media": [],
+                "payment": []
+            }
+        },
+        {
+            "dropdown_filter": "0",
+            "nullable": "0",
+            "name": "user_id",
+            "html_type": "select",
+            "mysql_type": "int",
+            "view_side": "",
+            "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
+            "size": "",
+            "readonly": "0",
+            "format_value": "",
+            "parameters": {
+                "general": [],
+                "source": {
+                    "data_source": "db_table",
+                    "join_field": "id",
+                    "display_field": [
+                        "name",
+                        " email"
+                    ],
+                    "join_table_name": "users_users"
+                },
+                "save": {
+                    "view_side": "both",
+                    "index": ""
+                },
+                "media": [],
+                "payment": []
+            }
+        },
+        {
+            "name": "published",
+            "html_type": "yesno",
+            "mysql_type": "int",
+            "view_side": "",
+            "index": "",
+            "size": "",
+            "readonly": "0",
+            "default_value": "",
+            "format_value": "",
+            "parameters": {
+                "general": [],
+                "source": [],
                 "save": {
                     "view_side": "both",
                     "index": ""
@@ -317,11 +364,14 @@
         },
         "select": [
             "tt.id",
-            "tt.title",
             "tt.name",
             "tt.email",
             "tt.department_id",
-            "tt_5284.title AS department_id_title",
+            "tt_7158.title AS department_id_title",
+            "tt.user_id",
+            "uu.name AS user_id_name",
+            "uu.email AS user_id_email",
+            "tt.published",
             "tt.created_by",
             "tt.date_created",
             "tt.modified_by",
@@ -330,9 +380,15 @@
         "leftjoin": [
             {
                 "table": "Tickets\\Tickets\\Code\\Tables\\Tickets",
-                "alias": "tt_5284",
+                "alias": "tt_7158",
                 "name": "#__tickets_tickets",
-                "on": "tt.department_id = tt_5284.id"
+                "on": "tt.department_id = tt_7158.id"
+            },
+            {
+                "table": "Users\\Users\\Code\\Tables\\Users",
+                "alias": "uu",
+                "name": "#__users_users",
+                "on": "tt.user_id = uu.id"
             }
         ]
     }

@@ -11,15 +11,14 @@
                                 "items": [
                                     {
                                         "group": {
-                                            "name": "category Detail",
+                                            "name": "Category Detail",
                                             "unique_name": "category_detail",
-                                            "has_title": null,
-                                            "user_right": null,
-                                            "hide_on_new": null,
+                                            "has_title": 1,
+                                            "user_right": 0,
+                                            "hide_on_new": 0,
                                             "fields": [
                                                 "title",
-                                                "description",
-                                                "published"
+                                                "description"
                                             ]
                                         }
                                     }
@@ -29,6 +28,18 @@
                                 "name": "",
                                 "class_name": "col-sm-4",
                                 "items": [
+                                    {
+                                        "group": {
+                                            "name": "Publishing Detail",
+                                            "unique_name": "publishing_detail",
+                                            "has_title": 1,
+                                            "user_right": 0,
+                                            "hide_on_new": 0,
+                                            "fields": [
+                                                "published"
+                                            ]
+                                        }
+                                    },
                                     {
                                         "group": {
                                             "name": "Modification Detail",
@@ -61,8 +72,7 @@
             ],
             "has_label": [
                 "title",
-                "published",
-                "date_created"
+                "published"
             ]
         }
     },

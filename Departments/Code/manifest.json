@@ -3,11 +3,11 @@
     "title": "Tickets Departments",
     "explanation": "  Tickets Departments",
     "description": "  Tickets Departments",
-    "version": 4,
+    "version": 9,
     "has_view": "1",
     "tie_field": "0",
     "email_on_new": "0",
     "email_on_edit": "0",
     "email_on_delete": "0",
-    "date_file_modified": "2017-06-17 15:44:08"
+    "date_file_modified": "2017-07-06 14:09:23"
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Teams
  *
- * @ORM\Table(name="tickets_teams", indexes={@ORM\Index(name="department_id_index", columns={"department_id"})})
+ * @ORM\Table(name="tickets_teams", indexes={@ORM\Index(name="department_id_index", columns={"department_id"}), @ORM\Index(name="user_id_index", columns={"user_id"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
@@ -21,13 +21,6 @@ class Teams extends \Kazist\Table\BaseTable
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255, nullable=false)
-     */
-    protected $title;
 
     /**
      * @var string
@@ -49,6 +42,20 @@ class Teams extends \Kazist\Table\BaseTable
      * @ORM\Column(name="department_id", type="integer", length=11, nullable=false)
      */
     protected $department_id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", length=11, nullable=false)
+     */
+    protected $user_id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="published", type="integer", length=11)
+     */
+    protected $published;
 
     /**
      * @var integer
@@ -87,30 +94,6 @@ class Teams extends \Kazist\Table\BaseTable
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Teams
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**
@@ -183,6 +166,54 @@ class Teams extends \Kazist\Table\BaseTable
     public function getDepartmentId()
     {
         return $this->department_id;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Teams
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set published
+     *
+     * @param integer $published
+     *
+     * @return Teams
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return integer
+     */
+    public function getPublished()
+    {
+        return $this->published;
     }
 
     /**

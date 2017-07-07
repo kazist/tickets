@@ -1,0 +1,163 @@
+{
+    "frontend": [{
+            "title": "Department List",
+            "description": "Management of Departments.",
+            "controller": "Tickets\\Departments\\Code\\Controllers\\DepartmentsController::indexAction",
+            "permissions": "can_view, can_viewown",
+            "unique_name": "tickets.departments",
+            "route": "tickets/departments",
+            "arguments": "",
+            "keywords": "department, list",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view"],
+                "ADMIN": ["can_view"],
+                "MODERATOR": ["can_view"],
+                "USER": ["can_view"]
+            }
+        }, {
+            "title": "Department Detail: {{ item.name }}",
+            "description": "Department Detail: {{ item.name }}",
+            "controller": "Tickets\\Departments\\Code\\Controllers\\DepartmentsController::detailAction",
+            "unique_name": "tickets.departments.detail",
+            "route": "tickets/departments/detail/{id}",
+            "permissions": "can_view, can_viewown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "department, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view"],
+                "ADMIN": ["can_view"],
+                "MODERATOR": ["can_view"],
+                "USER": ["can_view"]
+            }
+        }]
+    ,
+    "backend": [{
+            "title": "General Tasks",
+            "description": "General Tasks.",
+            "controller": "Tickets\\Departments\\Code\\Controllers\\Admin\\DepartmentsController::taskAction",
+            "unique_name": "admin.tickets.departments.task",
+            "route": "admin/tickets/departments/task",
+            "permissions": "can_write",
+            "arguments": "",
+            "keywords": "departments, task",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_write"],
+                "ADMIN": ["can_write"]
+            }
+        }, {
+            "title": "Department List",
+            "description": "Management of Departments.",
+            "controller": "Tickets\\Departments\\Code\\Controllers\\Admin\\DepartmentsController::indexAction",
+            "permissions": "can_view, can_viewown",
+            "unique_name": "admin.tickets.departments",
+            "route": "admin/tickets/departments",
+            "arguments": "",
+            "keywords": "department, list",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"]
+            }
+        }, {
+            "title": "Add Department",
+            "description": "Add Department.",
+            "controller": "Tickets\\Departments\\Code\\Controllers\\Admin\\DepartmentsController::addAction",
+            "unique_name": "admin.tickets.departments.add",
+            "route": "admin/tickets/departments/add",
+            "permissions": "can_add",
+            "arguments": {},
+            "keywords": "department, add",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add"],
+                "ADMIN": ["can_add"]
+            }
+        }, {
+            "title": "Edit Department {{ item.name }}",
+            "description": "Edit Department {{ item.name }}.",
+            "controller": "Tickets\\Departments\\Code\\Controllers\\Admin\\DepartmentsController::editAction",
+            "unique_name": "admin.tickets.departments.edit",
+            "route": "admin/tickets/departments/edit/{id}",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "department, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"]
+            }
+        }, {
+            "title": "Department Detail: {{ item.name }}",
+            "description": "Department Detail: {{ item.name }}",
+            "controller": "Tickets\\Departments\\Code\\Controllers\\Admin\\DepartmentsController::detailAction",
+            "unique_name": "admin.tickets.departments.detail",
+            "route": "admin/tickets/departments/detail/{id}",
+            "permissions": "can_view, can_viewown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "department, list, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_view", "can_viewown"],
+                "ADMIN": ["can_view", "can_viewown"]
+            }
+        }, {
+            "title": "Department Delete: {{ item.name }}",
+            "description": "Department Delete: {{ item.name }}",
+            "controller": "Tickets\\Departments\\Code\\Controllers\\Admin\\DepartmentsController::deleteAction",
+            "unique_name": "admin.tickets.departments.delete",
+            "route": "admin/tickets/departments/delete/{id}",
+            "permissions": "can_delete, can_deleteown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "department, delete, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_delete", "can_deleteown"],
+                "ADMIN": ["can_delete", "can_deleteown"]
+            }
+        }, {
+            "title": "Department Save: {{ item.name }}",
+            "description": "Department Save: {{ item.name }}",
+            "controller": "Tickets\\Departments\\Code\\Controllers\\Admin\\DepartmentsController::saveAction",
+            "unique_name": "admin.tickets.departments.save",
+            "route": "admin/tickets/departments/save",
+            "permissions": "can_add, can_write, can_writeown",
+            "arguments": {
+                "id": null
+            },
+            "keywords": "department, save, {{ item.name }}",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_add", "can_write", "can_writeown"],
+                "ADMIN": ["can_add", "can_write", "can_writeown"]
+            }
+        }]
+} 	

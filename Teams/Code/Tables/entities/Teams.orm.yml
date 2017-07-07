@@ -6,11 +6,6 @@ Tickets\Teams\Code\Tables\Teams:
       type: integer
       generator: { strategy: AUTO }
   fields:
-    title:
-      name: title
-      type: string
-      length: 255
-      nullable: false
     name:
       name: name
       type: string
@@ -26,6 +21,15 @@ Tickets\Teams\Code\Tables\Teams:
       type: integer
       length: 11
       nullable: false
+    user_id:
+      name: user_id
+      type: integer
+      length: 11
+      nullable: false
+    published:
+      name: published
+      type: integer
+      length: 11
     created_by:
       name: created_by
       type: integer
@@ -47,6 +51,8 @@ Tickets\Teams\Code\Tables\Teams:
   indexes:
     department_id_index:
       columns: [department_id]
+    user_id_index:
+      columns: [user_id]
   lifecycleCallbacks:
     prePersist:
       - onPrePersist

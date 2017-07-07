@@ -11,15 +11,26 @@ Tickets\Departments\Code\Tables\Departments:
       type: string
       length: 255
       nullable: false
-    category_id:
-      name: category_id
-      type: integer
-      length: 11
     description:
       name: description
       type: string
       length: 255
       nullable: true
+    phone:
+      name: phone
+      type: string
+      length: 255
+      nullable: false
+    email:
+      name: email
+      type: string
+      length: 255
+      nullable: false
+    address:
+      name: address
+      type: string
+      length: 255
+      nullable: false
     published:
       name: published
       type: integer
@@ -43,9 +54,6 @@ Tickets\Departments\Code\Tables\Departments:
       name: date_modified
       type: datetime
       nullable: true
-  indexes:
-    category_id_index:
-      columns: [category_id]
   lifecycleCallbacks:
     prePersist:
       - onPrePersist

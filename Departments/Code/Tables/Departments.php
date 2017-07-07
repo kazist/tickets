@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Departments
  *
- * @ORM\Table(name="tickets_departments", indexes={@ORM\Index(name="category_id_index", columns={"category_id"})})
+ * @ORM\Table(name="tickets_departments")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
@@ -30,18 +30,32 @@ class Departments extends \Kazist\Table\BaseTable
     protected $title;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="category_id", type="integer", length=11)
-     */
-    protected $category_id;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     protected $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255, nullable=false)
+     */
+    protected $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     */
+    protected $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255, nullable=false)
+     */
+    protected $address;
 
     /**
      * @var integer
@@ -114,30 +128,6 @@ class Departments extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Set categoryId
-     *
-     * @param integer $categoryId
-     *
-     * @return Departments
-     */
-    public function setCategoryId($categoryId)
-    {
-        $this->category_id = $categoryId;
-
-        return $this;
-    }
-
-    /**
-     * Get categoryId
-     *
-     * @return integer
-     */
-    public function getCategoryId()
-    {
-        return $this->category_id;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
@@ -159,6 +149,78 @@ class Departments extends \Kazist\Table\BaseTable
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return Departments
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Departments
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return Departments
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 
     /**

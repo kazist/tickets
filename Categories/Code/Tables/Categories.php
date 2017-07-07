@@ -75,7 +75,7 @@ class Categories extends \Kazist\Table\BaseTable
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -86,6 +86,7 @@ class Categories extends \Kazist\Table\BaseTable
      * Set title
      *
      * @param string $title
+     *
      * @return Categories
      */
     public function setTitle($title)
@@ -98,7 +99,7 @@ class Categories extends \Kazist\Table\BaseTable
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -109,6 +110,7 @@ class Categories extends \Kazist\Table\BaseTable
      * Set description
      *
      * @param string $description
+     *
      * @return Categories
      */
     public function setDescription($description)
@@ -121,7 +123,7 @@ class Categories extends \Kazist\Table\BaseTable
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -132,6 +134,7 @@ class Categories extends \Kazist\Table\BaseTable
      * Set published
      *
      * @param integer $published
+     *
      * @return Categories
      */
     public function setPublished($published)
@@ -144,7 +147,7 @@ class Categories extends \Kazist\Table\BaseTable
     /**
      * Get published
      *
-     * @return integer 
+     * @return integer
      */
     public function getPublished()
     {
@@ -152,9 +155,9 @@ class Categories extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Get created_by
+     * Get createdBy
      *
-     * @return integer 
+     * @return integer
      */
     public function getCreatedBy()
     {
@@ -162,9 +165,9 @@ class Categories extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Get date_created
+     * Get dateCreated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -172,9 +175,9 @@ class Categories extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Get modified_by
+     * Get modifiedBy
      *
-     * @return integer 
+     * @return integer
      */
     public function getModifiedBy()
     {
@@ -182,9 +185,9 @@ class Categories extends \Kazist\Table\BaseTable
     }
 
     /**
-     * Get date_modified
+     * Get dateModified
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateModified()
     {
@@ -198,3 +201,4 @@ class Categories extends \Kazist\Table\BaseTable
         // Add your code here
     }
 }
+
