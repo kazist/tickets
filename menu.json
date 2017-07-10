@@ -2,28 +2,32 @@
     "title": "Tickets",
     "description": "Tickets Advertisement",
     "alias": "tickets",
-    "icon": "fa-picture-o",
+    "icon": "fa fa-support",
     "home_link": "tickets\/tickets",
     "is_core": "1",
     "menulist": [{
             "title": "Tickets",
             "alias": "admin_tickets_tickets",
             "url": "admin/tickets/tickets",
+            "icon": "fa fa-support",
             "children": []
         }, {
             "title": "Categories",
             "alias": "admin_tickets_categories",
             "url": "admin/tickets/categories",
+            "icon": "fa fa-navicon",
             "children": []
         }, {
             "title": "Departments",
             "alias": "admin_tickets_departments",
             "url": "admin/tickets/departments",
+            "icon": "fa fa-building",
             "children": []
         }, {
             "title": "Teams",
             "alias": "admin_tickets_teams",
             "url": "admin/tickets/teams",
+            "icon": "fa fa-users",
             "children": []
         }]
 }
