@@ -2,26 +2,26 @@
     "layout": [{
             "tracking_id": "1",
             "unique_name": "tickets.tickets.admin.added",
-            "subject": "New Tickets: [{{ ticket.title }}].",
-            "sms": "New Tickets [{{ ticket.title }}].",
-            "body": "New Tickets"
+            "subject": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
+            "sms": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
+            "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }}."
         }, {
             "tracking_id": "2",
             "unique_name": "tickets.tickets.team.admin.added",
-            "subject": "New Tickets: [{{ ticket.title }}].",
-            "sms": "New Tickets: [{{ ticket.title }}].",
-            "body": "New Tickets"
+            "subject": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
+            "sms": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
+            "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }}."
         }, {
             "tracking_id": "3",
             "unique_name": "tickets.tickets.admin.comment.added",
-            "subject": "New Comment For [{{ ticket.title }}] Ticket.",
-            "sms": "New Comment For [{{ ticket.title }}] Ticket.",
-            "body": "New Comment"
+            "subject": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "sms": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply."
         }, {
             "tracking_id": "4",
             "unique_name": "tickets.tickets.owner.comment.added",
-            "subject": "New Comment For [{{ ticket.title }}] Ticket.",
-            "sms": "New Comment For [{{ ticket.title }}] Ticket.",
-            "body": "New Comment"
+            "subject": "[{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "sms": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply."
         }]
 }

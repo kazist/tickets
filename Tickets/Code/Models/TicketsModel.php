@@ -78,7 +78,7 @@ class TicketsModel extends BaseModel {
                 $parameters['user'] = $member;
                 $parameters['ticket'] = $ticket;
 
-                $email->sendDefinedLayoutEmail('tickets.tickets.admin.added', $member->email, $parameters);
+                $email->sendDefinedLayoutEmail('tickets.tickets.admin.added', $member->email, $parameters, null, 1);
             }
         }
     }
@@ -101,7 +101,7 @@ class TicketsModel extends BaseModel {
                 $parameters['user'] = $member;
                 $parameters['ticket'] = $ticket;
 
-                $email->sendDefinedLayoutEmail('tickets.tickets.department.team.added', $member->email, $parameters);
+                $email->sendDefinedLayoutEmail('tickets.tickets.department.team.added', $member->email, $parameters, null, 1);
             }
         }
     }

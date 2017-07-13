@@ -1,12 +1,16 @@
 Dear {{ user.name }},
 <br>
-
 <br>
-
-There is a new comment on the <b>{{ ticket.title|raw }}</b>.
-
+<div style="background:#EFEFEF; padding:5px 10px ; font-size:18px;">
+    Ticket [{{ ticket.id }}] : <b>{{ ticket.title|raw }}</b> Reply. 
+</div>
 <br>
-<b>{{ comment.comment|raw|nl2br }}</b>
+<b><i><u>Comment:</u></i></b>
+<br>
+<p>
+    {{ comment.comment|raw|nl2br }}
+</p>
+<br>
 <br>
 If you need any help, please let us know so that we can assist you.
 <br>
