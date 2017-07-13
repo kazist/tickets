@@ -3,25 +3,25 @@
             "tracking_id": "1",
             "unique_name": "tickets.tickets.admin.added",
             "subject": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
-            "sms": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
+            "short_body": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
             "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }}."
         }, {
             "tracking_id": "2",
             "unique_name": "tickets.tickets.team.admin.added",
             "subject": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
-            "sms": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
+            "short_body": "Ticket [{{ ticket.id }}]: {{ ticket.title }}.",
             "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }}."
         }, {
             "tracking_id": "3",
             "unique_name": "tickets.tickets.admin.comment.added",
             "subject": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
-            "sms": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "short_body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
             "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply."
         }, {
             "tracking_id": "4",
             "unique_name": "tickets.tickets.owner.comment.added",
             "subject": "[{{ ticket.id }}]: {{ ticket.title }} Reply.",
-            "sms": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "short_body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
             "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply."
         }]
 }
