@@ -19,6 +19,7 @@
                                             "fields": [
                                                 "name",
                                                 "email",
+                                                "address",
                                                 "department_id",
                                                 "user_id",
                                                 "published"
@@ -58,16 +59,16 @@
         },
         "table": {
             "fields": [
-                "user_id",
                 "name",
                 "email",
-                "department_id"
+                "department_id",
+                "user_id"
             ],
             "has_label": [
-                "user_id",
                 "name",
                 "email",
-                "department_id"
+                "department_id",
+                "user_id"
             ]
         }
     },
@@ -131,6 +132,34 @@
         {
             "dropdown_filter": "0",
             "nullable": "0",
+            "name": "address",
+            "html_type": "textarea",
+            "mysql_type": "varchar",
+            "view_side": "",
+            "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
+            "size": "",
+            "readonly": "0",
+            "format_value": "",
+            "parameters": {
+                "general": {
+                    "col": "",
+                    "row": ""
+                },
+                "source": [],
+                "save": {
+                    "view_side": "both",
+                    "index": ""
+                },
+                "media": [],
+                "payment": []
+            }
+        },
+        {
+            "dropdown_filter": "0",
+            "nullable": "0",
             "name": "email",
             "html_type": "text",
             "mysql_type": "varchar",
@@ -175,7 +204,7 @@
                     "display_field": [
                         "title"
                     ],
-                    "join_table_name": "tickets_tickets"
+                    "join_table_name": "tickets_departments"
                 },
                 "save": {
                     "view_side": "both",
@@ -189,7 +218,7 @@
             "dropdown_filter": "0",
             "nullable": "0",
             "name": "user_id",
-            "html_type": "select",
+            "html_type": "autocomplete",
             "mysql_type": "int",
             "view_side": "",
             "index": "",
@@ -219,14 +248,18 @@
             }
         },
         {
+            "dropdown_filter": "0",
+            "nullable": "0",
             "name": "published",
             "html_type": "yesno",
             "mysql_type": "int",
             "view_side": "",
             "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
             "size": "",
             "readonly": "0",
-            "default_value": "",
             "format_value": "",
             "parameters": {
                 "general": [],
@@ -365,9 +398,10 @@
         "select": [
             "tt.id",
             "tt.name",
+            "tt.address",
             "tt.email",
             "tt.department_id",
-            "tt_7158.title AS department_id_title",
+            "td.title AS department_id_title",
             "tt.user_id",
             "uu.name AS user_id_name",
             "uu.email AS user_id_email",
@@ -379,10 +413,10 @@
         ],
         "leftjoin": [
             {
-                "table": "Tickets\\Tickets\\Code\\Tables\\Tickets",
-                "alias": "tt_7158",
-                "name": "#__tickets_tickets",
-                "on": "tt.department_id = tt_7158.id"
+                "table": "Tickets\\Departments\\Code\\Tables\\Departments",
+                "alias": "td",
+                "name": "#__tickets_departments",
+                "on": "tt.department_id = td.id"
             },
             {
                 "table": "Users\\Users\\Code\\Tables\\Users",

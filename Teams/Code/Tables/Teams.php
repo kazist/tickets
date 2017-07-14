@@ -32,6 +32,13 @@ class Teams extends \Kazist\Table\BaseTable
     /**
      * @var string
      *
+     * @ORM\Column(name="address", type="string", length=255, nullable=false)
+     */
+    protected $address;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     protected $email;
@@ -53,7 +60,7 @@ class Teams extends \Kazist\Table\BaseTable
     /**
      * @var integer
      *
-     * @ORM\Column(name="published", type="integer", length=11)
+     * @ORM\Column(name="published", type="integer", length=11, nullable=false)
      */
     protected $published;
 
@@ -118,6 +125,30 @@ class Teams extends \Kazist\Table\BaseTable
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return Teams
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 
     /**
