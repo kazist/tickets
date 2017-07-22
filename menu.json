@@ -4,6 +4,7 @@
     "alias": "tickets",
     "icon": "fa fa-support",
     "home_link": "tickets\/tickets",
+    "path": "applications/Tickets",
     "is_core": "1",
     "menulist": [{
             "title": "Tickets",
