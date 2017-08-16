@@ -2,6 +2,7 @@
         "tracking_id": "1",
         "class": "Tickets\\Tickets\\Code\\Listeners\\TicketsListener",
         "title": " Tickets Event Listener",
+        "ordering": "1",
         "description": "Listen For Tickets Events and Modify Tickets Detail"
     }]
 
