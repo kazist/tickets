@@ -1,0 +1,28 @@
+
+[{
+        "tracking_id": "1",
+        "title": "Sales",
+        "description": "Sales Department",
+        "phone": "",
+        "email": "",
+        "address": "",
+        "published": "1"
+    }, {
+        "tracking_id": "2",
+        "title": "Billing",
+        "description": "Billing Department",
+        "phone": "",
+        "email": "",
+        "address": "",
+        "published": "1"
+    }, {
+        "tracking_id": "3",
+        "title": "Support",
+        "description": "Support Department",
+        "phone": "",
+        "email": "",
+        "address": "",
+        "published": "1"
+    }]
+
+
