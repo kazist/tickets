@@ -7,11 +7,11 @@
                         "columns": [
                             {
                                 "name": "",
-                                "class_name": "col-sm-8",
+                                "class_name": "col-sm-6",
                                 "items": [
                                     {
                                         "group": {
-                                            "name": "ticket Detail",
+                                            "name": "Ticket Detail",
                                             "unique_name": "ticket_detail",
                                             "has_title": 1,
                                             "user_right": 0,
@@ -19,20 +19,7 @@
                                             "fields": [
                                                 "title",
                                                 "category_id",
-                                                "department_id",
-                                                "description"
-                                            ]
-                                        }
-                                    },
-                                    {
-                                        "group": {
-                                            "name": "Replies",
-                                            "unique_name": "replies",
-                                            "has_title": 1,
-                                            "user_right": 0,
-                                            "hide_on_new": 0,
-                                            "fields": [
-                                                "replies"
+                                                "department_id"
                                             ]
                                         }
                                     }
@@ -40,37 +27,144 @@
                             },
                             {
                                 "name": "",
-                                "class_name": "col-sm-4",
+                                "class_name": "col-sm-6",
                                 "items": [
                                     {
-                                        "group": {
-                                            "name": "User Detail",
-                                            "unique_name": "user_detail",
-                                            "has_title": 1,
-                                            "user_right": 0,
-                                            "hide_on_new": 0,
-                                            "fields": [
-                                                "name",
-                                                "username",
-                                                "phone",
-                                                "email"
-                                            ]
-                                        }
-                                    },
+                                        "tab": [
+                                            {
+                                                "name": "User",
+                                                "unique_name": "user",
+                                                "user_right": 0,
+                                                "hide_on_new": 0,
+                                                "tabcontent": {
+                                                    "columns": [
+                                                        {
+                                                            "name": "",
+                                                            "class_name": "col-sm-12",
+                                                            "items": [
+                                                                {
+                                                                    "group": {
+                                                                        "name": "User Detail",
+                                                                        "unique_name": "user_detail",
+                                                                        "has_title": 0,
+                                                                        "user_right": 0,
+                                                                        "hide_on_new": 0,
+                                                                        "fields": [
+                                                                            "name",
+                                                                            "username",
+                                                                            "phone",
+                                                                            "email"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "name": "Modification",
+                                                "unique_name": "modification",
+                                                "user_right": 0,
+                                                "hide_on_new": 0,
+                                                "tabcontent": {
+                                                    "columns": [
+                                                        {
+                                                            "name": "",
+                                                            "class_name": "col-sm-12",
+                                                            "items": [
+                                                                {
+                                                                    "group": {
+                                                                        "name": "Modification Detail",
+                                                                        "unique_name": "modification_detail",
+                                                                        "has_title": 0,
+                                                                        "user_right": 0,
+                                                                        "hide_on_new": 0,
+                                                                        "fields": [
+                                                                            "modified_by",
+                                                                            "date_modified",
+                                                                            "created_by",
+                                                                            "date_created"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "columns": [
+                            {
+                                "name": "",
+                                "class_name": "col-sm-12",
+                                "items": [
                                     {
-                                        "group": {
-                                            "name": "Modification Detail",
-                                            "unique_name": "modification_detail",
-                                            "has_title": 1,
-                                            "user_right": 0,
-                                            "hide_on_new": 0,
-                                            "fields": [
-                                                "modified_by",
-                                                "date_modified",
-                                                "created_by",
-                                                "date_created"
-                                            ]
-                                        }
+                                        "tab": [
+                                            {
+                                                "name": "Ticket",
+                                                "unique_name": "ticket",
+                                                "user_right": 0,
+                                                "hide_on_new": 0,
+                                                "tabcontent": {
+                                                    "columns": [
+                                                        {
+                                                            "name": "",
+                                                            "class_name": "col-sm-12",
+                                                            "items": [
+                                                                {
+                                                                    "group": {
+                                                                        "name": "Tickets",
+                                                                        "unique_name": "tickets",
+                                                                        "has_title": 0,
+                                                                        "user_right": 0,
+                                                                        "hide_on_new": 0,
+                                                                        "fields": [
+                                                                            "description",
+                                                                            "tickets"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "name": "Notes & Comments",
+                                                "unique_name": "comments",
+                                                "user_right": 0,
+                                                "hide_on_new": 0,
+                                                "tabcontent": {
+                                                    "columns": [
+                                                        {
+                                                            "name": "",
+                                                            "class_name": "col-sm-12",
+                                                            "items": [
+                                                                {
+                                                                    "group": {
+                                                                        "name": "Replies",
+                                                                        "unique_name": "replies",
+                                                                        "has_title": 0,
+                                                                        "user_right": 0,
+                                                                        "hide_on_new": 0,
+                                                                        "fields": [
+                                                                            "replies"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
                                     }
                                 ]
                             }
@@ -479,6 +573,31 @@
                 "media": [],
                 "payment": []
             }
+        },
+        {
+            "dropdown_filter": "0",
+            "nullable": "0",
+            "name": "tickets",
+            "html_type": "text",
+            "mysql_type": "none",
+            "view_side": "",
+            "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
+            "size": "",
+            "readonly": "0",
+            "format_value": "",
+            "parameters": {
+                "general": [],
+                "source": [],
+                "save": {
+                    "view_side": "both",
+                    "index": ""
+                },
+                "media": [],
+                "payment": []
+            }
         }
     ],
     "primarykey": "id",
@@ -519,6 +638,7 @@
             "uu.name AS created_by_name",
             "tt.date_created",
             "tt.modified_by",
+            "uu_8846.name AS modified_by_name",
             "tt.date_modified"
         ],
         "leftjoin": [
@@ -539,6 +659,12 @@
                 "alias": "uu",
                 "name": "#__users_users",
                 "on": "tt.created_by = uu.id"
+            },
+            {
+                "table": "Users\\Users\\Code\\Tables\\Users",
+                "alias": "uu_8846",
+                "name": "#__users_users",
+                "on": "tt.modified_by = uu_8846.id"
             }
         ]
     }

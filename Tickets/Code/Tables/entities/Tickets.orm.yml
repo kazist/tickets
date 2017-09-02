@@ -70,6 +70,8 @@ Tickets\Tickets\Code\Tables\Tickets:
       columns: [department_id]
     created_by_index:
       columns: [created_by]
+    modified_by_index:
+      columns: [modified_by]
   lifecycleCallbacks:
     prePersist:
       - onPrePersist

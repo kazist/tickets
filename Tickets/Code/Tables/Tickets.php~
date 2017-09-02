@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Tickets
  *
- * @ORM\Table(name="tickets_tickets", indexes={@ORM\Index(name="category_id_index", columns={"category_id"}), @ORM\Index(name="department_id_index", columns={"department_id"}), @ORM\Index(name="created_by_index", columns={"created_by"})})
+ * @ORM\Table(name="tickets_tickets", indexes={@ORM\Index(name="category_id_index", columns={"category_id"}), @ORM\Index(name="department_id_index", columns={"department_id"}), @ORM\Index(name="created_by_index", columns={"created_by"}), @ORM\Index(name="modified_by_index", columns={"modified_by"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
