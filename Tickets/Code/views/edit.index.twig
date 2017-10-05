@@ -28,24 +28,26 @@
         <div class="ticket-detail-form">
             <div class="col-sm-12">
                 <label>Title</label>
-                {{ forms.input('title', 'text', item.title) }}
+                {{ forms.input('title', 'text', item.title, null, null, null, 'required') }}
             </div>
             <div>
                 <div class="col-sm-6">
                     <label>Department</label>
-                    {{ forms.input('department_id', 'select', item.department_id, null, null, null, null, null, json_object.fields.department_id.parameters.options) }}
+                    {{ forms.input('department_id', 'select', item.department_id, null, null, null, 'required', null, json_object.fields.department_id.parameters.options) }}
                 </div>
                 <div class="col-sm-6">
                     <label>Category</label>
-                    {{ forms.input('category_id', 'select', item.category_id, null, null, null, null, null, json_object.fields.category_id.parameters.options) }}
+                    {{ forms.input('category_id', 'select', item.category_id, null, null, null, 'required', null, json_object.fields.category_id.parameters.options) }}
                 </div>
             </div>
 
             <div class="clearfix"></div>
             <br>
             <div class="col-sm-12">
-                <b>Ticket Content</b><br>
-                {{ forms.input('description', 'textarea', item.description) }}
+                <b>Description: </b>
+                <small>Enter detailed and Understandable Information</small>
+                <br>
+                {{ forms.input('description', 'textarea', item.description, null, null, null, 'required') }}
             </div>
 
             <div class="clearfix"></div>
@@ -59,14 +61,21 @@
         {% endif %}
 
         <div>
-            <div class="col-sm-6">
-                {{ forms.input('username', 'username', item_username, 'Username', null, null, null, readonly) }}
-                {{ forms.input('email', 'email', item_email, 'Email', null, null, null, readonly) }}
+            <div class="col-sm-4">
+                <label>Name</label>
+                {{ forms.input('name', 'name', item_name, null, null, null, 'required', readonly) }}
+                <label>Username</label>
+                {{ forms.input('username', 'username', item_username, null, null, null, 'required', readonly) }}
             </div>
-            <div class="col-sm-6">
-                {{ forms.input('name', 'name', item_name, 'Name', null, null, null, readonly) }}
-                {{ forms.input('phone', 'phone', item_phone, 'Phone', null, null, null, readonly) }}
+            <div class="col-sm-4">
+                <label>Email</label>
+                {{ forms.input('email', 'email', item_email, null, null, null, 'required', readonly) }}
             </div>
+            <div class="col-sm-4">
+                <label>Phone</label>
+                {{ forms.input('phone', 'phone', item_phone, null, null, null, 'required', readonly) }}
+            </div>
+            <div class="clearfix"></div>
 
             {% if  document.user.id  %}
                 {{ forms.input('name', 'hidden', item_name) }}
@@ -74,19 +83,19 @@
                 {{ forms.input('email', 'hidden', item_email) }}
                 {{ forms.input('phone', 'hidden', item_phone) }}
             {% endif %}
-            </s>
 
-            <a class="btn btn-danger btn-sm" href="{{ generate_url('tickets.tickets') }}" title='Cancel'>Cancel</a>
-            <input class="btn btn-success btn-sm" name="id" type="submit" value="Save">
+            <div class="text-center">
+                <a class="btn btn-danger btn-sm" href="{{ generate_url('tickets.tickets') }}" title='Cancel'>Cancel</a>
+                <input class="btn btn-success btn-sm" name="id" type="submit" value="Submit">
+            </div>
 
-            <br>
-            <br>
         </div>
     </div>
 
     {{ forms.input('_token' ) }} 
 
 </form>
+
 <style>
     #description{
         width:100% !important;
