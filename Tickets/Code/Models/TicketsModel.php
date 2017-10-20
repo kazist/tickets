@@ -46,6 +46,7 @@ class TicketsModel extends BaseModel {
 
     public function save($form = '') {
 
+        $factory = new KazistFactory();
 
         $id = parent::save($form);
 
@@ -53,7 +54,10 @@ class TicketsModel extends BaseModel {
 
             $ticket = parent::getRecord($id);
 
-            $this->sendEmailToAdmin($form, $ticket, $id);
+            if ($factory->getSetting('tickets_tickets_admin_send_email')) {
+                $this->sendEmailToAdmin($form, $ticket, $id);
+            }
+            
             $this->sendEmailToDepartment($form, $ticket, $id);
         }
 
@@ -91,7 +95,7 @@ class TicketsModel extends BaseModel {
         if ($id && !$form['id']) {
 
             $ticket = ($ticket != '') ? $ticket : parent::getRecord($id);
-            
+
             $member_query = $factory->getQueryBuilder('#__tickets_teams', 'tt', array('department_id=' . $ticket->department_id));
             $members = $member_query->loadObjectList();
 

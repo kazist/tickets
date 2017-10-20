@@ -1,0 +1,14 @@
+{
+    "title": "Tickets",
+    "alias": "tickets",
+    "groups": [{
+            "title": "Tickets Setting",
+            "settings": [{
+                    "name": "tickets_tickets_admin_send_email",
+                    "label": "Send Email to Admin",
+                    "default": "0",
+                    "tooltip": "Set Send Email to Admin on everytime ticket is added.",
+                    "type": "yesno"
+                }]
+        }]
+}
