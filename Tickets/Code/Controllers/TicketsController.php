@@ -27,15 +27,63 @@ class TicketsController extends BaseController {
         $factory = new KazistFactory();
 
         $tickets = $this->model->getRecords();
-     
+
         $user = $factory->getUser();
 
         if ($user->id && count($tickets)) {
             return parent::indexAction($offset, $limit);
         } else {
-            $msg="Please Add Your Ticket.";
-            $factory->enqueueMessage($msg,'info');
-          return  $this->redirectToRoute('tickets.tickets.add');
+            $msg = "Please Add Your Ticket.";
+            $factory->enqueueMessage($msg, 'info');
+            return $this->redirectToRoute('tickets.tickets.add');
+        }
+    }
+
+    public function saveAction($form_data = '') {
+
+        $has_error = false;
+        $factory = new KazistFactory();
+
+        $session = $this->container->get('session');
+        $session_form = $session->get('session_form');
+
+        if (empty($form_data)) {
+            $form_data = $this->request->get('form');
+        }
+
+        $session->set('session_form', $form_data);
+
+        if ($form_data['title'] == '') {
+            $msg = "Title is a required field.";
+            $factory->enqueueMessage($msg, 'error');
+            $has_error = true;
+        }
+
+        if ($form_data['description'] == '') {
+            $msg = "Description is a required field.";
+            $factory->enqueueMessage($msg, 'error');
+            $has_error = true;
+        }
+
+        if ($form_data['Email'] == '') {
+            $msg = "Email is a required field.";
+            $factory->enqueueMessage($msg, 'error');
+            $has_error = true;
+        }
+
+        if ($form_data['Username'] == '') {
+            $msg = "Username is a required field.";
+            $factory->enqueueMessage($msg, 'error');
+            $has_error = true;
+        }
+
+        if ($has_error) {
+            return $this->redirectToRoute('tickets.tickets.add');
+        } else {
+
+            $session->clear('session_form');
+
+            return parent::saveAction($form_data);
         }
     }
 
