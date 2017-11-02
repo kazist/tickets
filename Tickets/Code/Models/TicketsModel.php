@@ -57,7 +57,7 @@ class TicketsModel extends BaseModel {
             if ($factory->getSetting('tickets_tickets_admin_send_email')) {
                 $this->sendEmailToAdmin($form, $ticket, $id);
             }
-            
+
             $this->sendEmailToDepartment($form, $ticket, $id);
         }
 
@@ -82,7 +82,7 @@ class TicketsModel extends BaseModel {
                 $parameters['user'] = $member;
                 $parameters['ticket'] = $ticket;
 
-                $email->sendDefinedLayoutEmail('tickets.tickets.admin.added', $member->email, $parameters, null, 1);
+                $email->sendDefinedLayoutEmail('tickets.tickets.admin.added', $member->email, $parameters);
             }
         }
     }
@@ -95,18 +95,23 @@ class TicketsModel extends BaseModel {
         if ($id && !$form['id']) {
 
             $ticket = ($ticket != '') ? $ticket : parent::getRecord($id);
-
-            $member_query = $factory->getQueryBuilder('#__tickets_teams', 'tt', array('department_id=' . (int)$ticket->department_id.' OR department_id IS NULL  OR department_id = \'\''));
+  
+            $member_query = $factory->getQueryBuilder('#__tickets_teams', 'tt');
+            $member_query->andWhere('tt.department_id=' . (int) $ticket->department_id . ' OR tt.department_id = 0 OR tt.department_id IS NULL  OR tt.department_id = \'\'');
+            $member_query->andWhere('tt.published=1');
             $members = $member_query->loadObjectList();
-
+       
             foreach ($members as $member) {
 
                 $parameters = array();
                 $parameters['user'] = $member;
                 $parameters['ticket'] = $ticket;
 
-                $email->sendDefinedLayoutEmail('tickets.tickets.department.team.added', $member->email, $parameters, null, 1);
+                $email->sendDefinedLayoutEmail('tickets.tickets.department.team.added', $member->email, $parameters);
+            
+                
             }
+            
         }
     }
 
