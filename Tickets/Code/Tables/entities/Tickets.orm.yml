@@ -20,7 +20,7 @@ Tickets\Tickets\Code\Tables\Tickets:
       name: department_id
       type: integer
       length: 11
-      nullable: false
+      nullable: true
     name:
       name: name
       type: string

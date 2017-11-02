@@ -39,7 +39,7 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * @var integer
      *
-     * @ORM\Column(name="department_id", type="integer", length=11, nullable=false)
+     * @ORM\Column(name="department_id", type="integer", length=11, nullable=true)
      */
     protected $department_id;
 

@@ -96,7 +96,7 @@ class TicketsModel extends BaseModel {
 
             $ticket = ($ticket != '') ? $ticket : parent::getRecord($id);
 
-            $member_query = $factory->getQueryBuilder('#__tickets_teams', 'tt', array('department_id=' . $ticket->department_id));
+            $member_query = $factory->getQueryBuilder('#__tickets_teams', 'tt', array('department_id=' . (int)$ticket->department_id.' OR department_id IS NULL  OR department_id = \'\''));
             $members = $member_query->loadObjectList();
 
             foreach ($members as $member) {

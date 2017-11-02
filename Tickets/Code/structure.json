@@ -7,7 +7,7 @@
                         "columns": [
                             {
                                 "name": "",
-                                "class_name": "col-sm-6",
+                                "class_name": "col-sm-8",
                                 "items": [
                                     {
                                         "group": {
@@ -17,18 +17,90 @@
                                             "user_right": 0,
                                             "hide_on_new": 0,
                                             "fields": [
-                                                "title",
-                                                "category_id",
-                                                "department_id"
+                                                "title"
                                             ]
                                         }
+                                    },
+                                    {
+                                        "tab": [
+                                            {
+                                                "name": "Ticket",
+                                                "unique_name": "ticket",
+                                                "user_right": 0,
+                                                "hide_on_new": 0,
+                                                "tabcontent": {
+                                                    "columns": [
+                                                        {
+                                                            "name": "",
+                                                            "class_name": "col-sm-12",
+                                                            "items": [
+                                                                {
+                                                                    "group": {
+                                                                        "name": "Tickets",
+                                                                        "unique_name": "tickets",
+                                                                        "has_title": 0,
+                                                                        "user_right": 0,
+                                                                        "hide_on_new": 0,
+                                                                        "fields": [
+                                                                            "description",
+                                                                            "tickets"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "name": "Notes & Comments",
+                                                "unique_name": "comments",
+                                                "user_right": 0,
+                                                "hide_on_new": 0,
+                                                "tabcontent": {
+                                                    "columns": [
+                                                        {
+                                                            "name": "",
+                                                            "class_name": "col-sm-12",
+                                                            "items": [
+                                                                {
+                                                                    "group": {
+                                                                        "name": "Replies",
+                                                                        "unique_name": "replies",
+                                                                        "has_title": 0,
+                                                                        "user_right": 0,
+                                                                        "hide_on_new": 0,
+                                                                        "fields": [
+                                                                            "replies"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
                                     }
                                 ]
                             },
                             {
                                 "name": "",
-                                "class_name": "col-sm-6",
+                                "class_name": "col-sm-4",
                                 "items": [
+                                    {
+                                        "group": {
+                                            "name": "Categories",
+                                            "unique_name": "categories",
+                                            "has_title": 1,
+                                            "user_right": 0,
+                                            "hide_on_new": 0,
+                                            "fields": [
+                                                "category_id",
+                                                "department_id"
+                                            ]
+                                        }
+                                    },
                                     {
                                         "tab": [
                                             {
@@ -104,69 +176,7 @@
                             {
                                 "name": "",
                                 "class_name": "col-sm-12",
-                                "items": [
-                                    {
-                                        "tab": [
-                                            {
-                                                "name": "Ticket",
-                                                "unique_name": "ticket",
-                                                "user_right": 0,
-                                                "hide_on_new": 0,
-                                                "tabcontent": {
-                                                    "columns": [
-                                                        {
-                                                            "name": "",
-                                                            "class_name": "col-sm-12",
-                                                            "items": [
-                                                                {
-                                                                    "group": {
-                                                                        "name": "Tickets",
-                                                                        "unique_name": "tickets",
-                                                                        "has_title": 0,
-                                                                        "user_right": 0,
-                                                                        "hide_on_new": 0,
-                                                                        "fields": [
-                                                                            "description",
-                                                                            "tickets"
-                                                                        ]
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "name": "Notes & Comments",
-                                                "unique_name": "comments",
-                                                "user_right": 0,
-                                                "hide_on_new": 0,
-                                                "tabcontent": {
-                                                    "columns": [
-                                                        {
-                                                            "name": "",
-                                                            "class_name": "col-sm-12",
-                                                            "items": [
-                                                                {
-                                                                    "group": {
-                                                                        "name": "Replies",
-                                                                        "unique_name": "replies",
-                                                                        "has_title": 0,
-                                                                        "user_right": 0,
-                                                                        "hide_on_new": 0,
-                                                                        "fields": [
-                                                                            "replies"
-                                                                        ]
-                                                                    }
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ]
+                                "items": []
                             }
                         ]
                     }
@@ -179,17 +189,23 @@
         "table": {
             "fields": [
                 "title",
+                "category_id",
+                "department_id",
                 "name",
                 "username",
                 "email",
-                "phone"
+                "phone",
+                "date_created"
             ],
             "has_label": [
                 "title",
+                "category_id",
+                "department_id",
                 "name",
                 "username",
                 "email",
-                "phone"
+                "phone",
+                "date_created"
             ]
         }
     },
@@ -202,7 +218,7 @@
     "fields": [
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "id",
             "html_type": "text",
             "mysql_type": "int",
@@ -225,7 +241,7 @@
             }
         },
         {
-            "dropdown_filter": "1",
+            "dropdown_filter": "0",
             "nullable": "0",
             "name": "title",
             "html_type": "text",
@@ -249,7 +265,7 @@
             }
         },
         {
-            "dropdown_filter": "0",
+            "dropdown_filter": "1",
             "nullable": "1",
             "name": "category_id",
             "html_type": "select",
@@ -281,8 +297,8 @@
             }
         },
         {
-            "dropdown_filter": "0",
-            "nullable": "0",
+            "dropdown_filter": "1",
+            "nullable": "1",
             "name": "department_id",
             "html_type": "select",
             "mysql_type": "int",
@@ -313,7 +329,7 @@
             }
         },
         {
-            "dropdown_filter": "1",
+            "dropdown_filter": "0",
             "nullable": "1",
             "name": "name",
             "html_type": "text",
@@ -338,7 +354,7 @@
             }
         },
         {
-            "dropdown_filter": "1",
+            "dropdown_filter": "0",
             "nullable": "1",
             "name": "username",
             "html_type": "text",
@@ -363,7 +379,7 @@
             }
         },
         {
-            "dropdown_filter": "1",
+            "dropdown_filter": "0",
             "nullable": "1",
             "name": "email",
             "html_type": "text",
@@ -388,7 +404,7 @@
             }
         },
         {
-            "dropdown_filter": "1",
+            "dropdown_filter": "0",
             "nullable": "1",
             "name": "phone",
             "html_type": "text",
@@ -441,7 +457,7 @@
             "dropdown_filter": "0",
             "nullable": "1",
             "name": "description",
-            "html_type": "textarea",
+            "html_type": "editor",
             "mysql_type": "text",
             "view_side": "both",
             "index": "",
@@ -454,7 +470,8 @@
             "parameters": {
                 "general": {
                     "col": "",
-                    "row": ""
+                    "row": "",
+                    "editor_type": ""
                 },
                 "source": [],
                 "save": {
@@ -638,7 +655,7 @@
             "uu.name AS created_by_name",
             "tt.date_created",
             "tt.modified_by",
-            "uu_8846.name AS modified_by_name",
+            "uu_7327.name AS modified_by_name",
             "tt.date_modified"
         ],
         "leftjoin": [
@@ -662,9 +679,9 @@
             },
             {
                 "table": "Users\\Users\\Code\\Tables\\Users",
-                "alias": "uu_8846",
+                "alias": "uu_7327",
                 "name": "#__users_users",
-                "on": "tt.modified_by = uu_8846.id"
+                "on": "tt.modified_by = uu_7327.id"
             }
         ]
     }

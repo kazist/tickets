@@ -19,6 +19,12 @@
             "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply."
         }, {
             "tracking_id": "4",
+            "unique_name": "tickets.tickets.department.team.added",
+            "subject": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "short_body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply."
+        }, {
+            "tracking_id": "5",
             "unique_name": "tickets.tickets.owner.comment.added",
             "subject": "[{{ ticket.id }}]: {{ ticket.title }} Reply.",
             "short_body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",

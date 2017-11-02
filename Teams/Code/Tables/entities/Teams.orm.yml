@@ -15,50 +15,54 @@ Tickets\Teams\Code\Tables\Teams:
       name: address
       type: string
       length: 255
-      nullable: false
+      nullable: true
     email:
       name: email
       type: string
       length: 255
-      nullable: false
+      nullable: true
     department_id:
       name: department_id
       type: integer
       length: 11
-      nullable: false
+      nullable: true
     user_id:
       name: user_id
       type: integer
       length: 11
-      nullable: false
+      nullable: true
     published:
       name: published
       type: integer
       length: 11
-      nullable: false
+      nullable: true
     created_by:
       name: created_by
       type: integer
       length: 11
-      nullable: false
+      nullable: true
     date_created:
       name: date_created
       type: datetime
-      nullable: false
+      nullable: true
     modified_by:
       name: modified_by
       type: integer
       length: 11
-      nullable: false
+      nullable: true
     date_modified:
       name: date_modified
       type: datetime
-      nullable: false
+      nullable: true
   indexes:
     department_id_index:
       columns: [department_id]
     user_id_index:
       columns: [user_id]
+    created_by_index:
+      columns: [created_by]
+    modified_by_index:
+      columns: [modified_by]
   lifecycleCallbacks:
     prePersist:
       - onPrePersist

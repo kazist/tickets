@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Teams
  *
- * @ORM\Table(name="tickets_teams", indexes={@ORM\Index(name="department_id_index", columns={"department_id"}), @ORM\Index(name="user_id_index", columns={"user_id"})})
+ * @ORM\Table(name="tickets_teams", indexes={@ORM\Index(name="department_id_index", columns={"department_id"}), @ORM\Index(name="user_id_index", columns={"user_id"}), @ORM\Index(name="created_by_index", columns={"created_by"}), @ORM\Index(name="modified_by_index", columns={"modified_by"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
@@ -32,63 +32,63 @@ class Teams extends \Kazist\Table\BaseTable
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255, nullable=false)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     protected $address;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     protected $email;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="department_id", type="integer", length=11, nullable=false)
+     * @ORM\Column(name="department_id", type="integer", length=11, nullable=true)
      */
     protected $department_id;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer", length=11, nullable=false)
+     * @ORM\Column(name="user_id", type="integer", length=11, nullable=true)
      */
     protected $user_id;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="published", type="integer", length=11, nullable=false)
+     * @ORM\Column(name="published", type="integer", length=11, nullable=true)
      */
     protected $published;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="created_by", type="integer", length=11, nullable=false)
+     * @ORM\Column(name="created_by", type="integer", length=11, nullable=true)
      */
     protected $created_by;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_created", type="datetime", nullable=false)
+     * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
     protected $date_created;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="modified_by", type="integer", length=11, nullable=false)
+     * @ORM\Column(name="modified_by", type="integer", length=11, nullable=true)
      */
     protected $modified_by;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_modified", type="datetime", nullable=false)
+     * @ORM\Column(name="date_modified", type="datetime", nullable=true)
      */
     protected $date_modified;
 

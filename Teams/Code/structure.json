@@ -62,13 +62,15 @@
                 "name",
                 "email",
                 "department_id",
-                "user_id"
+                "user_id",
+                "published"
             ],
             "has_label": [
                 "name",
                 "email",
                 "department_id",
-                "user_id"
+                "user_id",
+                "published"
             ]
         }
     },
@@ -81,7 +83,7 @@
     "fields": [
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "id",
             "html_type": "text",
             "mysql_type": "int",
@@ -131,7 +133,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "address",
             "html_type": "textarea",
             "mysql_type": "varchar",
@@ -159,7 +161,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "email",
             "html_type": "text",
             "mysql_type": "varchar",
@@ -184,7 +186,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "department_id",
             "html_type": "select",
             "mysql_type": "int",
@@ -216,7 +218,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "user_id",
             "html_type": "recordpicker",
             "mysql_type": "int",
@@ -249,7 +251,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "published",
             "html_type": "yesno",
             "mysql_type": "int",
@@ -274,7 +276,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "created_by",
             "html_type": "recordpicker",
             "mysql_type": "int",
@@ -297,6 +299,7 @@
                     "join_table_name": "users_users"
                 },
                 "save": {
+                    "view_side": "both",
                     "index": ""
                 },
                 "media": [],
@@ -305,7 +308,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "date_created",
             "html_type": "datetime",
             "mysql_type": "datetime",
@@ -330,7 +333,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "modified_by",
             "html_type": "recordpicker",
             "mysql_type": "int",
@@ -353,6 +356,7 @@
                     "join_table_name": "users_users"
                 },
                 "save": {
+                    "view_side": "both",
                     "index": ""
                 },
                 "media": [],
@@ -361,7 +365,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "date_modified",
             "html_type": "datetime",
             "mysql_type": "datetime",
@@ -391,7 +395,7 @@
     "foreignkey": "",
     "renamedfields": "",
     "main_fields": [
-        "id"
+        "name"
     ],
     "main_view": "table",
     "has_view": "1",
@@ -419,8 +423,10 @@
             "uu.email AS user_id_email",
             "tt.published",
             "tt.created_by",
+            "uu_1112.name AS created_by_name",
             "tt.date_created",
             "tt.modified_by",
+            "uu_7172.name AS modified_by_name",
             "tt.date_modified"
         ],
         "leftjoin": [
@@ -435,6 +441,18 @@
                 "alias": "uu",
                 "name": "#__users_users",
                 "on": "tt.user_id = uu.id"
+            },
+            {
+                "table": "Users\\Users\\Code\\Tables\\Users",
+                "alias": "uu_1112",
+                "name": "#__users_users",
+                "on": "tt.created_by = uu_1112.id"
+            },
+            {
+                "table": "Users\\Users\\Code\\Tables\\Users",
+                "alias": "uu_7172",
+                "name": "#__users_users",
+                "on": "tt.modified_by = uu_7172.id"
             }
         ]
     }
