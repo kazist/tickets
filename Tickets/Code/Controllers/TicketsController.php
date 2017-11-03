@@ -65,13 +65,13 @@ class TicketsController extends BaseController {
             $has_error = true;
         }
 
-        if ($form_data['Email'] == '') {
+        if ($form_data['email'] == '') {
             $msg = "Email is a required field.";
             $factory->enqueueMessage($msg, 'error');
             $has_error = true;
         }
 
-        if ($form_data['Username'] == '') {
+        if ($form_data['username'] == '') {
             $msg = "Username is a required field.";
             $factory->enqueueMessage($msg, 'error');
             $has_error = true;
@@ -81,7 +81,7 @@ class TicketsController extends BaseController {
             return $this->redirectToRoute('tickets.tickets.add');
         } else {
 
-            $session->clear('session_form');
+            $session->remove('session_form');
 
             return parent::saveAction($form_data);
         }
