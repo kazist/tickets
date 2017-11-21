@@ -47,8 +47,10 @@
         </div>
 
         <form id="ticket-reply" class="ticket-single-form form-horizontal" action="{{ generate_url('admin.tickets.tickets.comments.save') }}" method="POST" role="form" enctype="multipart/form-data">
+            <b>Reply: </b>
+            <small>Enter Reply to Ticket</small>
 
-            {{ forms.input('comment', 'editor', item.article, 'Article Content') }}
+            {{ forms.input('comment', 'editor', item.article) }}
             {{ forms.input('ticket_id', 'hidden', item.id) }}
             {{ forms.input('is_support', 'hidden', 1) }}
 
