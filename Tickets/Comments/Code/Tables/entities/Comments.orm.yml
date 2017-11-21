@@ -1,0 +1,59 @@
+Tickets\Tickets\Comments\Code\Tables\Comments:
+  table: tickets_tickets_comments
+  type: entity
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    comment:
+      name: comment
+      type: text
+      nullable: false
+    ticket_id:
+      name: ticket_id
+      type: integer
+      length: 11
+      nullable: false
+    attachment:
+      name: attachment
+      type: integer
+      length: 11
+      nullable: true
+    is_support:
+      name: is_support
+      type: integer
+      length: 11
+      nullable: true
+    date_created:
+      name: date_created
+      type: datetime
+      nullable: true
+    date_modified:
+      name: date_modified
+      type: datetime
+      nullable: true
+    modified_by:
+      name: modified_by
+      type: integer
+      length: 11
+      nullable: true
+    created_by:
+      name: created_by
+      type: integer
+      length: 11
+      nullable: true
+  indexes:
+    ticket_id_index:
+      columns: [ticket_id]
+    modified_by_index:
+      columns: [modified_by]
+    created_by_index:
+      columns: [created_by]
+  lifecycleCallbacks:
+    prePersist:
+      - onPrePersist
+      - onPrePersistCallbacks
+    preUpdate:
+      - onPreUpdate
+      - onPreUpdateCallbacks

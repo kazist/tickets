@@ -1,0 +1,15 @@
+{
+    "layout": [{
+            "tracking_id": "1",
+            "unique_name": "tickets.tickets.support.comment",
+            "subject": "#{{ ticket.id }}: {{ ticket.title }}",
+            "short_body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply."
+        }, {
+            "tracking_id": "2",
+            "unique_name": "tickets.tickets.owner.comment",
+            "subject": "#{{ ticket.id }}: {{ ticket.title }}",
+            "short_body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply.",
+            "body": "Ticket [{{ ticket.id }}]: {{ ticket.title }} Reply."
+        }]
+}

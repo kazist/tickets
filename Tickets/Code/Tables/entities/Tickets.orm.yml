@@ -21,6 +21,11 @@ Tickets\Tickets\Code\Tables\Tickets:
       type: integer
       length: 11
       nullable: true
+    assigned_to:
+      name: assigned_to
+      type: integer
+      length: 11
+      nullable: true
     name:
       name: name
       type: string
@@ -40,6 +45,11 @@ Tickets\Tickets\Code\Tables\Tickets:
       name: phone
       type: string
       length: 255
+      nullable: true
+    attachment:
+      name: attachment
+      type: integer
+      length: 11
       nullable: true
     description:
       name: description
@@ -68,6 +78,8 @@ Tickets\Tickets\Code\Tables\Tickets:
       columns: [category_id]
     department_id_index:
       columns: [department_id]
+    assigned_to_index:
+      columns: [assigned_to]
     created_by_index:
       columns: [created_by]
     modified_by_index:

@@ -44,6 +44,20 @@ class TicketsModel extends BaseModel {
         }
     }
 
+    public function getComments($ticket_id = '') {
+
+        $factory = new KazistFactory();
+
+        if ($ticket_id == '') {
+            $ticket_id = $this->request->get('id');
+        }
+
+        $query = $factory->getQueryBuilder('tickets_tickets_comments', 'ttc', array('ttc.ticket_id=:ticket_id'), array('ticket_id' => $ticket_id));
+        $comments = $query->loadObjectList();
+
+        return $comments;
+    }
+
     public function save($form = '') {
 
         $factory = new KazistFactory();
@@ -51,6 +65,8 @@ class TicketsModel extends BaseModel {
         $id = parent::save($form);
 
         if ($id) {
+
+            $this->saveImage($id);
 
             $ticket = parent::getRecord($id);
 
@@ -62,6 +78,24 @@ class TicketsModel extends BaseModel {
         }
 
         return $id;
+    }
+
+    public function saveImage($ticket_id) {
+
+        $factory = new KazistFactory();
+
+        $media_ids = $factory->uploadMedia('form.attachment', 'tickets.tickets', $ticket_id);
+ 
+        $media_id = $media_ids[0];
+
+        if ($media_id) {
+
+            $data = new \stdClass();
+            $data->id = $ticket_id;
+            $data->attachment = $media_id;
+
+            $factory->saveRecord('#__tickets_tickets', $data);
+        }
     }
 
     public function sendEmailToAdmin($form, $ticket, $id) {
@@ -95,12 +129,12 @@ class TicketsModel extends BaseModel {
         if ($id && !$form['id']) {
 
             $ticket = ($ticket != '') ? $ticket : parent::getRecord($id);
-  
+
             $member_query = $factory->getQueryBuilder('#__tickets_teams', 'tt');
             $member_query->andWhere('tt.department_id=' . (int) $ticket->department_id . ' OR tt.department_id = 0 OR tt.department_id IS NULL  OR tt.department_id = \'\'');
             $member_query->andWhere('tt.published=1');
             $members = $member_query->loadObjectList();
-       
+
             foreach ($members as $member) {
 
                 $parameters = array();
@@ -108,10 +142,7 @@ class TicketsModel extends BaseModel {
                 $parameters['ticket'] = $ticket;
 
                 $email->sendDefinedLayoutEmail('tickets.tickets.department.team.added', $member->email, $parameters);
-            
-                
             }
-            
         }
     }
 

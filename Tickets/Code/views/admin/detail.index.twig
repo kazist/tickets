@@ -1,0 +1,160 @@
+{# empty Twig template #}
+
+{% import "form.macro.twig" as forms %}
+
+
+<div class="ticket-wrapper">
+    <div class="col-sm-9 ticket-single">
+
+        <h1 class="component-header">
+            {{ item.title }}
+        </h1>
+
+        <div class="clearfix"></div>
+
+        <div>
+            {{ item.description|raw }}
+        </div>
+
+        <div>
+            <div class="pull-left">
+                <h4>Comments</h4>
+            </div>
+
+            <div class="pull-right">
+                <a class="btn btn-success btn-sm" name="id" href="#ticket-reply">
+                    <i class="fa fa-reply"></i>
+                    Reply
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="ticket-comments">
+            {% for comment in comments %}
+                <div class="ticket-comment {% if comment.is_support %}support-ticket-comment{% endif %}">
+                    <blockquote>
+                        <div>
+                            {{ comment.comment|raw }}
+                        </div>
+                        <small>
+                            <i class="fa fa-clock-o"></i>
+                            {{ comment.date_created|date('d M Y H:i')}}
+                        </small>
+                    </blockquote>
+                </div>
+            {% endfor%}
+        </div>
+
+        <form id="ticket-reply" class="ticket-single-form form-horizontal" action="{{ generate_url('admin.tickets.tickets.comments.save') }}" method="POST" role="form" enctype="multipart/form-data">
+
+            {{ forms.input('comment', 'editor', item.article, 'Article Content') }}
+            {{ forms.input('ticket_id', 'hidden', item.id) }}
+            {{ forms.input('is_support', 'hidden', 1) }}
+
+            <div class="col-sm-12">     
+                <b>Attachment</b><br>
+                {{ forms.input('attachment', 'file', item.attachment) }}
+            </div>
+
+            <div class="ticket-submit-button text-center">
+                <button class="btn btn-success btn-sm" name="id"  type="submit">
+                    <i class="fa fa-save"></i>
+                    Save
+                </button>
+            </div>
+
+            {{ forms.input('_token' ) }} 
+        </form>
+
+
+
+    </div>
+
+
+    <div class="col-sm-3 ticket-sidebar">
+
+        <div>
+            <h4> Category Detail</h4>
+            <div class="col-sm-12">
+                <label>Category</label><br>
+                {{ item.category_id_title }}
+            </div>
+            <div class="col-sm-12">
+                <label>Department</label><br>
+                {{ item.department_id_title }}
+            </div>
+            <div class="col-sm-12">
+                <label>Assigned To</label><br>
+                {{ item.assigned_to_name }}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div>
+            <h4> User Detail</h4>
+            <div class="col-sm-12">
+                <label>Name</label><br>
+                {{ item.name }}
+            </div>
+            <div class="col-sm-12">
+                <label>Username</label><br>
+                {{ item.username }}
+            </div>
+            <div class="col-sm-12">
+                <label>Phone</label><br>
+                {{ item.phone }}
+            </div>
+            <div class="col-sm-12">
+                <label>Email</label><br>
+                {{ item.email }}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+
+
+<style>
+    #comment{
+        height: 100px;
+    }
+
+    .ticket-wrapper{
+        background: #FCFCFC;
+    }
+
+    .ticket-wrapper .ticket-single{
+        background: #FFF;
+    }
+
+    .ticket-wrapper .ticket-sidebar h4{
+        margin:15px 5px;
+    }
+
+    .ticket-wrapper .ticket-sidebar{
+        background: #FCFCFC;
+    }
+
+    .ticket-comment blockquote{
+        border-bottom: 1px dotted #F3F3F3;
+        border-right: 1px dotted #F3F3F3;
+        border-top: 1px dotted #F3F3F3;
+    }
+
+    .support-ticket-comment blockquote{
+        border-color: #6ffcba;
+    }
+
+    #kazi_reply_comments_post{
+        width:100% !important;
+        max-width:100% !important;
+        height: 100px;
+    }
+</style>
+
+

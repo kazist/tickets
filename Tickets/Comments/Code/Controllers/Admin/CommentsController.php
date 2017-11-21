@@ -8,24 +8,17 @@
  */
 
 /**
- * Description of TicketsController
+ * Description of CommentsController
  *
  * @author sbc
  */
 
-namespace Tickets\Tickets\Code\Controllers\Admin;
+namespace Tickets\Tickets\Comments\Code\Controllers\Admin;
 
 defined('KAZIST') or exit('Not Kazist Framework');
 
 use Kazist\Controller\BaseController;
 
-class TicketsController extends BaseController {
-
-    public function detailAction($id = '', $slug = '') {
-
-        $this->data_arr['comments'] = $this->model->getComments();
-
-        return parent::detailAction($id, $slug);
-    }
-
+class CommentsController extends BaseController {
+    
 }

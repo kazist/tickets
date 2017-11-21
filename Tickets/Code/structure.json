@@ -43,7 +43,7 @@
                                                                         "hide_on_new": 0,
                                                                         "fields": [
                                                                             "description",
-                                                                            "tickets"
+                                                                            "attachment"
                                                                         ]
                                                                     }
                                                                 }
@@ -97,7 +97,8 @@
                                             "hide_on_new": 0,
                                             "fields": [
                                                 "category_id",
-                                                "department_id"
+                                                "department_id",
+                                                "assigned_to"
                                             ]
                                         }
                                     },
@@ -183,7 +184,8 @@
                 ]
             },
             "ommitted": [
-                "id"
+                "id",
+                "tickets"
             ]
         },
         "table": {
@@ -195,6 +197,7 @@
                 "username",
                 "email",
                 "phone",
+                "attachment",
                 "date_created"
             ],
             "has_label": [
@@ -331,6 +334,38 @@
         {
             "dropdown_filter": "0",
             "nullable": "1",
+            "name": "assigned_to",
+            "html_type": "select",
+            "mysql_type": "int",
+            "view_side": "",
+            "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
+            "size": "",
+            "readonly": "0",
+            "format_value": "",
+            "parameters": {
+                "general": [],
+                "source": {
+                    "data_source": "db_table",
+                    "join_field": "id",
+                    "display_field": [
+                        "name"
+                    ],
+                    "join_table_name": "tickets_teams"
+                },
+                "save": {
+                    "view_side": "both",
+                    "index": ""
+                },
+                "media": [],
+                "payment": []
+            }
+        },
+        {
+            "dropdown_filter": "0",
+            "nullable": "1",
             "name": "name",
             "html_type": "text",
             "mysql_type": "varchar",
@@ -419,6 +454,34 @@
             "format_value": "",
             "parameters": {
                 "general": [],
+                "source": [],
+                "save": {
+                    "view_side": "both",
+                    "index": ""
+                },
+                "media": [],
+                "payment": []
+            }
+        },
+        {
+            "dropdown_filter": "0",
+            "nullable": "1",
+            "name": "attachment",
+            "html_type": "media",
+            "mysql_type": "int",
+            "view_side": "",
+            "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
+            "size": "",
+            "readonly": "0",
+            "format_value": "",
+            "parameters": {
+                "general": {
+                    "file_path": "",
+                    "file_group_by": "id"
+                },
                 "source": [],
                 "save": {
                     "view_side": "both",
@@ -593,7 +656,7 @@
         },
         {
             "dropdown_filter": "0",
-            "nullable": "0",
+            "nullable": "1",
             "name": "tickets",
             "html_type": "text",
             "mysql_type": "none",
@@ -646,16 +709,21 @@
             "tc.title AS category_id_title",
             "tt.department_id",
             "td.title AS department_id_title",
+            "tt.assigned_to",
+            "tt_4430.name AS assigned_to_name",
             "tt.name",
             "tt.username",
             "tt.email",
             "tt.phone",
+            "tt.attachment",
+            "mm.title AS attachment_title",
+            "mm.file AS attachment_file",
             "tt.description",
             "tt.created_by",
             "uu.name AS created_by_name",
             "tt.date_created",
             "tt.modified_by",
-            "uu_7327.name AS modified_by_name",
+            "uu_6793.name AS modified_by_name",
             "tt.date_modified"
         ],
         "leftjoin": [
@@ -672,6 +740,18 @@
                 "on": "tt.department_id = td.id"
             },
             {
+                "table": "Tickets\\Teams\\Code\\Tables\\Teams",
+                "alias": "tt_4430",
+                "name": "#__tickets_teams",
+                "on": "tt.assigned_to = tt_4430.id"
+            },
+            {
+                "table": "Media\\Media\\Code\\Tables\\Media",
+                "alias": "mm",
+                "name": "#__media_media",
+                "on": "tt.attachment = mm.id"
+            },
+            {
                 "table": "Users\\Users\\Code\\Tables\\Users",
                 "alias": "uu",
                 "name": "#__users_users",
@@ -679,9 +759,9 @@
             },
             {
                 "table": "Users\\Users\\Code\\Tables\\Users",
-                "alias": "uu_7327",
+                "alias": "uu_6793",
                 "name": "#__users_users",
-                "on": "tt.modified_by = uu_7327.id"
+                "on": "tt.modified_by = uu_6793.id"
             }
         ]
     }

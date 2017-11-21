@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Tickets
  *
- * @ORM\Table(name="tickets_tickets", indexes={@ORM\Index(name="category_id_index", columns={"category_id"}), @ORM\Index(name="department_id_index", columns={"department_id"}), @ORM\Index(name="created_by_index", columns={"created_by"}), @ORM\Index(name="modified_by_index", columns={"modified_by"})})
+ * @ORM\Table(name="tickets_tickets", indexes={@ORM\Index(name="category_id_index", columns={"category_id"}), @ORM\Index(name="department_id_index", columns={"department_id"}), @ORM\Index(name="assigned_to_index", columns={"assigned_to"}), @ORM\Index(name="created_by_index", columns={"created_by"}), @ORM\Index(name="modified_by_index", columns={"modified_by"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
@@ -44,6 +44,13 @@ class Tickets extends \Kazist\Table\BaseTable
     protected $department_id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="assigned_to", type="integer", length=11, nullable=true)
+     */
+    protected $assigned_to;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
@@ -70,6 +77,13 @@ class Tickets extends \Kazist\Table\BaseTable
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     protected $phone;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="attachment", type="integer", length=11)
+     */
+    protected $attachment;
 
     /**
      * @var string
@@ -190,6 +204,30 @@ class Tickets extends \Kazist\Table\BaseTable
     }
 
     /**
+     * Set assignedTo
+     *
+     * @param integer $assignedTo
+     *
+     * @return Tickets
+     */
+    public function setAssignedTo($assignedTo)
+    {
+        $this->assigned_to = $assignedTo;
+
+        return $this;
+    }
+
+    /**
+     * Get assignedTo
+     *
+     * @return integer
+     */
+    public function getAssignedTo()
+    {
+        return $this->assigned_to;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
@@ -283,6 +321,30 @@ class Tickets extends \Kazist\Table\BaseTable
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set attachment
+     *
+     * @param integer $attachment
+     *
+     * @return Tickets
+     */
+    public function setAttachment($attachment)
+    {
+        $this->attachment = $attachment;
+
+        return $this;
+    }
+
+    /**
+     * Get attachment
+     *
+     * @return integer
+     */
+    public function getAttachment()
+    {
+        return $this->attachment;
     }
 
     /**

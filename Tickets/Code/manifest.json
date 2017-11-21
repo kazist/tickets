@@ -3,11 +3,11 @@
     "title": "Tickets List",
     "explanation": "Tickets List",
     "description": "Tickets List",
-    "version": 46,
+    "version": 54,
     "has_view": "1",
     "tie_field": "0",
     "email_on_new": "0",
     "email_on_edit": "0",
     "email_on_delete": "0",
-    "date_file_modified": "2017-11-02 11:23:14"
+    "date_file_modified": "2017-11-21 13:34:30"
 }
