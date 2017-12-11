@@ -93,6 +93,13 @@ class Tickets extends \Kazist\Table\BaseTable
     protected $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="website", type="string", length=255, nullable=true)
+     */
+    protected $website;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="created_by", type="integer", length=11, nullable=true)
@@ -369,6 +376,30 @@ class Tickets extends \Kazist\Table\BaseTable
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     *
+     * @return Tickets
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
     }
 
     /**

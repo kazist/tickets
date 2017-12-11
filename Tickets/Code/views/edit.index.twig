@@ -44,6 +44,33 @@
             <div class="clearfix"></div>
             <br>
             <div class="col-sm-12">
+                <div class="col-sm-4">
+                    <label>Name</label>
+                    {{ forms.input('name', 'name', item_name, null, null, null, 'required', readonly) }}
+                    <label>Username</label>
+                    {{ forms.input('username', 'username', item_username, null, null, null, 'required', readonly) }}
+                </div>
+                <div class="col-sm-4">
+                    <label>Email</label>
+                    {{ forms.input('email', 'email', item_email, null, null, null, 'required', readonly) }}
+                </div>
+                <div class="col-sm-4">
+                    <label>Phone</label>
+                    {{ forms.input('phone', 'phone', item_phone, null, null, null, 'required', readonly) }}
+                </div>
+                <div class="clearfix"></div>
+
+                {% if  document.user.id  %}
+                    {{ forms.input('name', 'hidden', item_name) }}
+                    {{ forms.input('username', 'hidden', item_username) }}
+                    {{ forms.input('email', 'hidden', item_email) }}
+                    {{ forms.input('phone', 'hidden', item_phone) }}
+                {% endif %}
+            </div>
+            <div class="clearfix"></div>
+            <br>
+
+            <div class="col-sm-12">
                 <b>Description: </b>
                 <small>Enter detailed and Understandable Information</small>
                 <br>
@@ -66,28 +93,7 @@
         {% endif %}
 
         <div>
-            <div class="col-sm-4">
-                <label>Name</label>
-                {{ forms.input('name', 'name', item_name, null, null, null, 'required', readonly) }}
-                <label>Username</label>
-                {{ forms.input('username', 'username', item_username, null, null, null, 'required', readonly) }}
-            </div>
-            <div class="col-sm-4">
-                <label>Email</label>
-                {{ forms.input('email', 'email', item_email, null, null, null, 'required', readonly) }}
-            </div>
-            <div class="col-sm-4">
-                <label>Phone</label>
-                {{ forms.input('phone', 'phone', item_phone, null, null, null, 'required', readonly) }}
-            </div>
-            <div class="clearfix"></div>
 
-            {% if  document.user.id  %}
-                {{ forms.input('name', 'hidden', item_name) }}
-                {{ forms.input('username', 'hidden', item_username) }}
-                {{ forms.input('email', 'hidden', item_email) }}
-                {{ forms.input('phone', 'hidden', item_phone) }}
-            {% endif %}
 
             <div class="text-center">
                 <a class="btn btn-danger btn-sm" href="{{ generate_url('tickets.tickets') }}" title='Cancel'>Cancel</a>

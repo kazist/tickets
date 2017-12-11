@@ -55,6 +55,11 @@ Tickets\Tickets\Code\Tables\Tickets:
       name: description
       type: text
       nullable: true
+    website:
+      name: website
+      type: string
+      length: 255
+      nullable: true
     created_by:
       name: created_by
       type: integer

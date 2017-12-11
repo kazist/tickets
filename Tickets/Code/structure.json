@@ -126,7 +126,8 @@
                                                                             "name",
                                                                             "username",
                                                                             "phone",
-                                                                            "email"
+                                                                            "email",
+                                                                            "website"
                                                                         ]
                                                                     }
                                                                 }
@@ -208,6 +209,7 @@
                 "username",
                 "email",
                 "phone",
+                "attachment",
                 "date_created"
             ]
         }
@@ -547,6 +549,56 @@
         {
             "dropdown_filter": "0",
             "nullable": "1",
+            "name": "tickets",
+            "html_type": "text",
+            "mysql_type": "none",
+            "view_side": "",
+            "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
+            "size": "",
+            "readonly": "0",
+            "format_value": "",
+            "parameters": {
+                "general": [],
+                "source": [],
+                "save": {
+                    "view_side": "both",
+                    "index": ""
+                },
+                "media": [],
+                "payment": []
+            }
+        },
+        {
+            "dropdown_filter": "0",
+            "nullable": "1",
+            "name": "website",
+            "html_type": "text",
+            "mysql_type": "varchar",
+            "view_side": "",
+            "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
+            "size": "",
+            "readonly": "0",
+            "format_value": "",
+            "parameters": {
+                "general": [],
+                "source": [],
+                "save": {
+                    "view_side": "both",
+                    "index": ""
+                },
+                "media": [],
+                "payment": []
+            }
+        },
+        {
+            "dropdown_filter": "0",
+            "nullable": "1",
             "name": "created_by",
             "html_type": "recordpicker",
             "mysql_type": "int",
@@ -653,31 +705,6 @@
                 "media": [],
                 "payment": []
             }
-        },
-        {
-            "dropdown_filter": "0",
-            "nullable": "1",
-            "name": "tickets",
-            "html_type": "text",
-            "mysql_type": "none",
-            "view_side": "",
-            "index": "",
-            "id_name": "",
-            "class_name": "",
-            "default_value": "",
-            "size": "",
-            "readonly": "0",
-            "format_value": "",
-            "parameters": {
-                "general": [],
-                "source": [],
-                "save": {
-                    "view_side": "both",
-                    "index": ""
-                },
-                "media": [],
-                "payment": []
-            }
         }
     ],
     "primarykey": "id",
@@ -686,7 +713,7 @@
     "foreignkey": "",
     "renamedfields": "",
     "main_fields": [
-        "id"
+        "title"
     ],
     "main_view": "table",
     "has_view": "1",
@@ -710,7 +737,7 @@
             "tt.department_id",
             "td.title AS department_id_title",
             "tt.assigned_to",
-            "tt_4430.name AS assigned_to_name",
+            "tt_7333.name AS assigned_to_name",
             "tt.name",
             "tt.username",
             "tt.email",
@@ -719,11 +746,12 @@
             "mm.title AS attachment_title",
             "mm.file AS attachment_file",
             "tt.description",
+            "tt.website",
             "tt.created_by",
             "uu.name AS created_by_name",
             "tt.date_created",
             "tt.modified_by",
-            "uu_6793.name AS modified_by_name",
+            "uu_7757.name AS modified_by_name",
             "tt.date_modified"
         ],
         "leftjoin": [
@@ -741,9 +769,9 @@
             },
             {
                 "table": "Tickets\\Teams\\Code\\Tables\\Teams",
-                "alias": "tt_4430",
+                "alias": "tt_7333",
                 "name": "#__tickets_teams",
-                "on": "tt.assigned_to = tt_4430.id"
+                "on": "tt.assigned_to = tt_7333.id"
             },
             {
                 "table": "Media\\Media\\Code\\Tables\\Media",
@@ -759,9 +787,9 @@
             },
             {
                 "table": "Users\\Users\\Code\\Tables\\Users",
-                "alias": "uu_6793",
+                "alias": "uu_7757",
                 "name": "#__users_users",
-                "on": "tt.modified_by = uu_6793.id"
+                "on": "tt.modified_by = uu_7757.id"
             }
         ]
     }
