@@ -194,23 +194,20 @@
                 "title",
                 "category_id",
                 "department_id",
-                "name",
+                "assigned_to",
                 "username",
                 "email",
-                "phone",
-                "attachment",
-                "date_created"
+                "website",
+                "created_by"
             ],
             "has_label": [
                 "title",
                 "category_id",
                 "department_id",
-                "name",
+                "assigned_to",
                 "username",
                 "email",
-                "phone",
-                "attachment",
-                "date_created"
+                "website"
             ]
         }
     },
@@ -737,7 +734,7 @@
             "tt.department_id",
             "td.title AS department_id_title",
             "tt.assigned_to",
-            "tt_7333.name AS assigned_to_name",
+            "tt_923.name AS assigned_to_name",
             "tt.name",
             "tt.username",
             "tt.email",
@@ -751,7 +748,7 @@
             "uu.name AS created_by_name",
             "tt.date_created",
             "tt.modified_by",
-            "uu_7757.name AS modified_by_name",
+            "uu_9551.name AS modified_by_name",
             "tt.date_modified"
         ],
         "leftjoin": [
@@ -769,9 +766,9 @@
             },
             {
                 "table": "Tickets\\Teams\\Code\\Tables\\Teams",
-                "alias": "tt_7333",
+                "alias": "tt_923",
                 "name": "#__tickets_teams",
-                "on": "tt.assigned_to = tt_7333.id"
+                "on": "tt.assigned_to = tt_923.id"
             },
             {
                 "table": "Media\\Media\\Code\\Tables\\Media",
@@ -787,9 +784,9 @@
             },
             {
                 "table": "Users\\Users\\Code\\Tables\\Users",
-                "alias": "uu_7757",
+                "alias": "uu_9551",
                 "name": "#__users_users",
-                "on": "tt.modified_by = uu_7757.id"
+                "on": "tt.modified_by = uu_9551.id"
             }
         ]
     }
