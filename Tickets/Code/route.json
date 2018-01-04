@@ -114,6 +114,22 @@
                 "ADMIN": ["can_write"]
             }
         }, {
+            "title": "Change Ticket Status",
+            "description": "Change Ticket Status.",
+            "controller": "Tickets\\Tickets\\Code\\Controllers\\Admin\\TicketsController::statusAction",
+            "unique_name": "admin.tickets.tickets.status",
+            "route": "admin/tickets/tickets/status",
+            "permissions": "can_write",
+            "arguments": "",
+            "keywords": "tickets, status",
+            "priority": "0.5",
+            "changefreq": "weekly",
+            "login_required": 1,
+            "roles": {
+                "SUPER_ADMIN": ["can_write"],
+                "ADMIN": ["can_write"]
+            }
+        }, {
             "title": "Ticket List",
             "description": "Management of Tickets.",
             "controller": "Tickets\\Tickets\\Code\\Controllers\\Admin\\TicketsController::indexAction",

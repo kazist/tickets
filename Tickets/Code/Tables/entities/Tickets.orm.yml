@@ -60,6 +60,11 @@ Tickets\Tickets\Code\Tables\Tickets:
       type: string
       length: 255
       nullable: true
+    is_closed:
+      name: is_closed
+      type: integer
+      length: 11
+      nullable: true
     created_by:
       name: created_by
       type: integer

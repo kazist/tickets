@@ -44,6 +44,56 @@ class TicketsModel extends BaseModel {
         }
     }
 
+    public function getCategoriesJson() {
+
+        $categories_arr = array();
+
+        $factory = new KazistFactory();
+
+        $query = $factory->getQueryBuilder('tickets_categories', 'tc');
+        $query->andWhere('tc.published=1');
+        $categories = $query->loadObjectList();
+
+        foreach ($categories as $key => $category) {
+            $categories_arr[] = array('value' => $category->id, 'text' => $category->title);
+        }
+
+        return $categories_arr;
+    }
+
+    public function getDepartmentsJson() {
+
+        $departments_arr = array();
+
+        $factory = new KazistFactory();
+
+        $query = $factory->getQueryBuilder('tickets_departments', 'td');
+        $query->andWhere('td.published=1');
+        $departments = $query->loadObjectList();
+
+        foreach ($departments as $key => $department) {
+            $departments_arr[] = array('value' => $department->id, 'text' => $department->title);
+        }
+
+        return $departments_arr;
+    }
+
+    public function getTeamsJson() {
+
+        $teams_arr = array();
+
+        $factory = new KazistFactory();
+
+        $query = $factory->getQueryBuilder('tickets_teams', 'tt');
+        $teams = $query->loadObjectList();
+
+        foreach ($teams as $key => $team) {
+            $teams_arr[] = array('value' => $team->id, 'text' => $team->name);
+        }
+
+        return $teams_arr;
+    }
+
     public function getComments($ticket_id = '') {
 
         $factory = new KazistFactory();
@@ -85,7 +135,7 @@ class TicketsModel extends BaseModel {
         $factory = new KazistFactory();
 
         $media_ids = $factory->uploadMedia('form.attachment', 'tickets.tickets', $ticket_id);
- 
+
         $media_id = $media_ids[0];
 
         if ($media_id) {

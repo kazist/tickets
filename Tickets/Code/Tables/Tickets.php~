@@ -102,6 +102,13 @@ class Tickets extends \Kazist\Table\BaseTable
     /**
      * @var integer
      *
+     * @ORM\Column(name="is_closed", type="integer", length=11)
+     */
+    protected $is_closed;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="created_by", type="integer", length=11, nullable=true)
      */
     protected $created_by;
@@ -400,6 +407,30 @@ class Tickets extends \Kazist\Table\BaseTable
     public function getWebsite()
     {
         return $this->website;
+    }
+
+    /**
+     * Set isClosed
+     *
+     * @param integer $isClosed
+     *
+     * @return Tickets
+     */
+    public function setIsClosed($isClosed)
+    {
+        $this->is_closed = $isClosed;
+
+        return $this;
+    }
+
+    /**
+     * Get isClosed
+     *
+     * @return integer
+     */
+    public function getIsClosed()
+    {
+        return $this->is_closed;
     }
 
     /**

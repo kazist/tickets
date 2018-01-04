@@ -2,13 +2,38 @@
 
 {% import "form.macro.twig" as forms %}
 
-
 <div class="ticket-wrapper">
     <div class="col-sm-9 ticket-single">
 
-        <h1 class="component-header">
-            {{ item.title }}
-        </h1>
+        <div>
+            <div class="pull-left">
+                <h1 class="component-header">
+                    {{ item.title }}
+                </h1>
+            </div>
+            <div class="pull-right ticket-buttons">
+
+                {% if item.is_closed %}
+                    <a class="btn btn-default btn-sm" name="id" href="{{ url('admin.tickets.tickets.status', {id:item.id,'action':'open'}) }}">
+                        <i class="fa fa-check"></i>
+                        Open
+                    </a>
+                {% else %}
+                    <a class="btn btn-danger btn-sm" name="id" href="{{ url('admin.tickets.tickets.status', {id:item.id,'action':'close'}) }}">
+                        <i class="fa fa-times"></i>
+                        Close
+                    </a>
+                {% endif %}
+                <a class="btn btn-default btn-sm" name="id" href="{{ url('admin.tickets.tickets.edit',{id:item.id}) }}">
+                    <i class="fa fa-pencil"></i>
+                    Edit
+                </a>
+                <a class="btn btn-primary btn-sm" name="id" href="#ticket-reply">
+                    <i class="fa fa-reply"></i>
+                    Reply
+                </a>
+            </div>
+        </div>
 
         <div class="clearfix"></div>
 
@@ -21,12 +46,7 @@
                 <h4>Comments</h4>
             </div>
 
-            <div class="pull-right">
-                <a class="btn btn-success btn-sm" name="id" href="#ticket-reply">
-                    <i class="fa fa-reply"></i>
-                    Reply
-                </a>
-            </div>
+
             <div class="clearfix"></div>
         </div>
 
@@ -53,6 +73,7 @@
             {{ forms.input('comment', 'editor', item.article) }}
             {{ forms.input('ticket_id', 'hidden', item.id) }}
             {{ forms.input('is_support', 'hidden', 1) }}
+            {{ forms.input('is_closed', 'hidden', 0) }}
 
             <div class="col-sm-12">     
                 <b>Attachment</b><br>
@@ -64,6 +85,12 @@
                     <i class="fa fa-save"></i>
                     Save
                 </button>
+                {% if not item.is_closed %}
+                <a class="btn btn-danger btn-sm save_closed" href="#" >
+                    <i class="fa fa-save"></i>
+                    Save & Closed
+                </a>
+                {% endif %}
             </div>
 
             {{ forms.input('_token' ) }} 
@@ -76,52 +103,118 @@
 
     <div class="col-sm-3 ticket-sidebar">
 
-        <div>
-            <h4> Category Detail</h4>
-            <div class="col-sm-12">
-                <label>Category</label><br>
-                {{ item.category_id_title }}
+        {% if item.is_closed %}
+            <div class="alert alert-danger text-center">
+                Ticket Closed
             </div>
-            <div class="col-sm-12">
-                <label>Department</label><br>
-                {{ item.department_id_title }}
+        {% else %}
+            <div class="alert alert-success text-center">
+                Ticket Open
             </div>
-            <div class="col-sm-12">
-                <label>Assigned To</label><br>
-                {{ item.assigned_to_name }}
-            </div>
-            <div class="clearfix"></div>
-        </div>
+        {% endif %}
+        <form id="main-edit-form" action="{{ generate_url('admin.tickets.tickets.save') }}" class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
 
-        <div>
-            <h4> User Detail</h4>
-            <div class="col-sm-12">
-                <label>Name</label><br>
-                {{ item.name }}
-            </div>
-            <div class="col-sm-12">
-                <label>Username</label><br>
-                {{ item.username }}
-            </div>
-            <div class="col-sm-12">
-                <label>Phone</label><br>
-                {{ item.phone }}
-            </div>
-            <div class="col-sm-12">
-                <label>Email</label><br>
-                {{ item.email }}
-            </div>
-            <div class="clearfix"></div>
-        </div>
+            <div>
+                <h4> Category Detail</h4>
 
+                <div class="col-sm-12 edit_select_wrapper">
+                    <label>Category</label><br>
+                    {{ item.category_id_title }}
+                    <a class="pull-right edit_select">
+                        <i class="fa fa-pencil"></i>
+                        Edit
+                        <i class="fa fa-caret"></i>
+                    </a>
+                    {{ forms.input('category_id', 'select', item.category_id, null, null, null, null, null, category_arr) }}
+                </div>
+
+                <div class="col-sm-12 edit_select_wrapper">
+                    <label>Department</label><br>
+                    {{ item.department_id_title }}
+                    <a class="pull-right edit_select">
+                        <i class="fa fa-pencil"></i>
+                        Edit
+                    </a>
+                    {{ forms.input('department_id', 'select', item.department_id, null, null, null, null, null, department_arr) }}
+                </div>
+
+                <div class="col-sm-12 edit_select_wrapper">
+                    <label>Assigned To</label><br>
+                    {{ item.assigned_to_name }}
+                    <a class="pull-right edit_select">
+                        <i class="fa fa-pencil"></i>
+                        Edit
+                    </a>
+                    {{ forms.input('assigned_to', 'select', item.assigned_to, null, null, null, null, null, team_arr) }}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div>
+                <h4> User Detail</h4>
+                <div class="col-sm-12">
+                    <label>Name</label><br>
+                    {{ item.name }}
+                </div>
+                <div class="col-sm-12">
+                    <label>Username</label><br>
+                    {{ item.username }}
+                </div>
+                <div class="col-sm-12">
+                    <label>Phone</label><br>
+                    {{ item.phone }}
+                </div>
+                <div class="col-sm-12">
+                    <label>Email</label><br>
+                    {{ item.email }}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            {{ forms.input('_token' ) }} 
+            {{ forms.input('id', 'hidden', item.id) }}
+            {{ forms.input('return_url', 'hidden', return_url) }}
+
+        </form>
     </div>
-
     <div class="clearfix"></div>
 </div>
 
 
 
+<script>
+    jQuery(document).ready(function () {
+
+        jQuery('.edit_select').click(function () {
+
+            jQuery(this).closest('div').find('select').show();
+        });
+
+        jQuery('.department_id').change(function () {
+            jQuery(this).closest('form').submit();
+        });
+
+        jQuery('.category_id').change(function () {
+            jQuery(this).closest('form').submit();
+        });
+
+        jQuery('.assigned_to').change(function () {
+            jQuery(this).closest('form').submit();
+        });
+        
+        jQuery('.save_closed').click(function () {
+            jQuery(this).closest('form').find('.is_closed').val('1');
+            jQuery(this).closest('form').submit();
+        });
+    });
+</script>
+
 <style>
+
+    .edit_select_wrapper input, .edit_select_wrapper select{
+        display: none;
+    }
+
     #comment{
         height: 100px;
     }
@@ -140,6 +233,11 @@
 
     .ticket-wrapper .ticket-sidebar{
         background: #FCFCFC;
+    }
+
+    .ticket-buttons{
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
 
     .ticket-comment blockquote{

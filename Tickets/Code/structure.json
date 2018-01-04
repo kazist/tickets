@@ -186,7 +186,8 @@
             },
             "ommitted": [
                 "id",
-                "tickets"
+                "tickets",
+                "is_closed"
             ]
         },
         "table": {
@@ -198,6 +199,7 @@
                 "username",
                 "email",
                 "website",
+                "is_closed",
                 "created_by"
             ],
             "has_label": [
@@ -207,7 +209,8 @@
                 "assigned_to",
                 "username",
                 "email",
-                "website"
+                "website",
+                "created_by"
             ]
         }
     },
@@ -596,6 +599,31 @@
         {
             "dropdown_filter": "0",
             "nullable": "1",
+            "name": "is_closed",
+            "html_type": "yesno",
+            "mysql_type": "int",
+            "view_side": "",
+            "index": "",
+            "id_name": "",
+            "class_name": "",
+            "default_value": "",
+            "size": "",
+            "readonly": "0",
+            "format_value": "",
+            "parameters": {
+                "general": [],
+                "source": [],
+                "save": {
+                    "view_side": "both",
+                    "index": ""
+                },
+                "media": [],
+                "payment": []
+            }
+        },
+        {
+            "dropdown_filter": "0",
+            "nullable": "1",
             "name": "created_by",
             "html_type": "recordpicker",
             "mysql_type": "int",
@@ -734,7 +762,7 @@
             "tt.department_id",
             "td.title AS department_id_title",
             "tt.assigned_to",
-            "tt_923.name AS assigned_to_name",
+            "tt_8863.name AS assigned_to_name",
             "tt.name",
             "tt.username",
             "tt.email",
@@ -744,11 +772,12 @@
             "mm.file AS attachment_file",
             "tt.description",
             "tt.website",
+            "tt.is_closed",
             "tt.created_by",
             "uu.name AS created_by_name",
             "tt.date_created",
             "tt.modified_by",
-            "uu_9551.name AS modified_by_name",
+            "uu_5778.name AS modified_by_name",
             "tt.date_modified"
         ],
         "leftjoin": [
@@ -766,9 +795,9 @@
             },
             {
                 "table": "Tickets\\Teams\\Code\\Tables\\Teams",
-                "alias": "tt_923",
+                "alias": "tt_8863",
                 "name": "#__tickets_teams",
-                "on": "tt.assigned_to = tt_923.id"
+                "on": "tt.assigned_to = tt_8863.id"
             },
             {
                 "table": "Media\\Media\\Code\\Tables\\Media",
@@ -784,9 +813,9 @@
             },
             {
                 "table": "Users\\Users\\Code\\Tables\\Users",
-                "alias": "uu_9551",
+                "alias": "uu_5778",
                 "name": "#__users_users",
-                "on": "tt.modified_by = uu_9551.id"
+                "on": "tt.modified_by = uu_5778.id"
             }
         ]
     }
