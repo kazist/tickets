@@ -27,27 +27,53 @@
         {% if items|length > 0 %}
             {% for item in items %}
 
-                <div class="ticket-item tag-box-v1 box-shadow shadow-effect-2 ">
 
-                    <h4>
+                {% if items|length > 0 %}
+                    <div class="table-responsive">
+                        <table width="100%" class="table table-condensed table-bordered">
+                            <tbody>
+                                {% for item in items %}
+                                    <tr>
 
-                        <a href="{{ generate_url('tickets.tickets.detail', {'id':item.id}) }}">
-                            {{ item.title }}
-                        </a>
+                                        <td>
+                                            <b>
+                                                <a href="{{ generate_url('tickets.tickets.detail', {'id':item.id}) }}" title="Detail">
+                                                    {{ item.title }}
+                                                </a>
+                                            </b>
+                                            <br>
+                                            <b>Cat: </b>{{ item.category_id_title }}
+                                            <b>Dept: </b>{{ item.department_id_title }}
+                                        </td>
 
-                        <a class="btn btn-primary btn-xs" href="{{ generate_url('tickets.tickets.edit', {'id':item.id}) }}">
-                            <i class="fa fa-pencil"></i> 
-                            Edit
-                        </a>
-                    </h4>
+                                        <td>
+                                            <i class="fa fa-envelope"></i> {{ item.email|default('-') }} | 
+                                            <i class="fa fa-globe"></i> {{ item.website|default('-') }} <br>
+                                            <i class="fa fa-clock-o"></i>
+                                            {% if item.date_created != '0000-00-00 00:00:00' %}
+                                                {{ item.date_created ? item.date_created|date('d M Y H:i:s',  document.timezone) }}
+                                            {% endif %} &nbsp; &nbsp;
+                                        </td>
 
+                                        <td>
+                                            {% if item.is_closed %}
+                                                <div class="label label-danger text-center">
+                                                    Ticket Closed
+                                                </div>
+                                            {% else %}
+                                                <div class="label label-success text-center">
+                                                    Ticket Open
+                                                </div>
+                                            {% endif %}
+                                        </td>
 
-                    <div class="tickets-desc">
-                        {{ item.description|raw }}  
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
+                {% endif %}               
 
-                    <div class="clearfix"></div>
-                </div>
 
             {% endfor %}            
         {% endif %}

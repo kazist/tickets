@@ -2,50 +2,252 @@
 
 {% import "form.macro.twig" as forms %}
 
+<div class="ticket-wrapper">
+    <div class="col-sm-9 ticket-single">
 
-<br>
+        <div>
+            <div class="pull-left">
+                <h1 class="component-header">
+                    {{ item.title }}
+                </h1>
+            </div>
+            <div class="pull-right ticket-buttons">
 
-<form class="ticket-single-form form-horizontal" action="{{ generate_url('tickets.tickets.save') }}" method="POST">
-
-    <div class="ticket-single">
-
-        <h1 class="component-header">
-            {{ item.title }}
-        </h1>
+               
+                <a class="btn btn-default btn-sm" name="id" href="{{ url('tickets.tickets.edit',{id:item.id}) }}">
+                    <i class="fa fa-pencil"></i>
+                    Edit
+                </a>
+                <a class="btn btn-primary btn-sm" name="id" href="#ticket-reply">
+                    <i class="fa fa-reply"></i>
+                    Reply
+                </a>
+            </div>
+        </div>
 
         <div class="clearfix"></div>
 
-
-        <blockquote>
-            <small>
-                {{ item.description|raw }}
-            </small>
-        </blockquote>
-
-        <div class="headline">
-            <h4>Replies</h4>
+        <div>
+            {{ item.description|raw }}
         </div>
 
-        {{ forms.input('comment', 'comment') }}
+        <div>
+            <div class="pull-left">
+                <h4>Thread</h4>
+            </div>
 
 
-        <hr class="bg-grey">
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="ticket-comments">
+            {% for comment in comments %}
+                <div class="ticket-comment {% if comment.is_support %}support-ticket-comment{% endif %}">
+                    <blockquote>
+                        <div>
+                            <div class="ticket-comment-header">
+                                <div class="col-sm-3">
+                                    <small> 
+                                        {{ comment.name }}
+                                    </small>
+                                </div>
+                                <div class="col-sm-9 text-right">
+                                    <small>
+                                        <i class="fa fa-clock-o"></i>
+                                        {{ comment.date_created|date('d M Y H:i')}}
+                                    </small>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <div class="col-sm-12 ticket-comment-body">
+                                {{ comment.comment|raw }}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </blockquote>
+                </div>
+            {% endfor%}
+        </div>
+
+        <form id="ticket-reply" class="ticket-single-form form-horizontal" action="{{ generate_url('tickets.tickets.comments.save') }}" method="POST" role="form" enctype="multipart/form-data">
+            <b>Reply: </b>
+            <small>Enter Reply to Ticket</small>
+
+            {{ forms.input('comment', 'editor', item.article) }}
+            {{ forms.input('ticket_id', 'hidden', item.id) }}
+            {{ forms.input('is_support', 'hidden', 1) }}
+            {{ forms.input('is_closed', 'hidden', 0) }}
+
+            <div class="col-sm-12">     
+                <b>Attachment</b><br>
+                {{ forms.input('attachment', 'file', item.attachment) }}
+            </div>
+
+            <div class="ticket-submit-button text-center">
+                <button class="btn btn-success btn-sm" name="id"  type="submit">
+                    <i class="fa fa-save"></i>
+                    Save
+                </button>
+                {% if not item.is_closed %}
+                    <a class="btn btn-danger btn-sm save_closed" href="#" >
+                        <i class="fa fa-save"></i>
+                        Save & Closed
+                    </a>
+                {% endif %}
+            </div>
+
+            {{ forms.input('_token' ) }} 
+        </form>
+
+
 
     </div>
 
-    <div class="ticket-submit-button text-center" style="display:none;">
-        <input class="btn btn-success btn-sm" name="id" value="Save" type="submit">
+
+    <div class="col-sm-3 ticket-sidebar">
+
+        {% if item.is_closed %}
+            <div class="alert alert-danger text-center">
+                Ticket Closed
+            </div>
+        {% else %}
+            <div class="alert alert-success text-center">
+                Ticket Open
+            </div>
+        {% endif %}
+        <form id="main-edit-form" action="{{ generate_url('tickets.tickets.save') }}" class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
+
+            <div>
+                <h4> Category Detail</h4>
+
+                <div class="col-sm-12 edit_select_wrapper">
+                    <label>Category</label><br>
+                    {{ item.category_id_title }}
+                </div>
+
+                <div class="col-sm-12 edit_select_wrapper">
+                    <label>Department</label><br>
+                    {{ item.department_id_title }}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div>
+                <h4> User Detail</h4>
+                <div class="col-sm-12">
+                    <label>Name</label><br>
+                    {{ item.name }}
+                </div>
+                <div class="col-sm-12">
+                    <label>Username</label><br>
+                    {{ item.username }}
+                </div>
+                <div class="col-sm-12">
+                    <label>Phone</label><br>
+                    {{ item.phone }}
+                </div>
+                <div class="col-sm-12">
+                    <label>Email</label><br>
+                    {{ item.email }}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            {{ forms.input('_token' ) }} 
+            {{ forms.input('id', 'hidden', item.id) }}
+            {{ forms.input('return_url', 'hidden', return_url) }}
+
+        </form>
     </div>
+    <div class="clearfix"></div>
+</div>
 
-    {{ forms.input('id', 'hidden', item.id) }}
 
-    <input class="form-id" name="id" value="{{ item.id }}" type="hidden">             
 
-    {{ forms.input('_token' ) }} 
+<script>
+    jQuery(document).ready(function () {
 
-</form>
+        jQuery('.edit_select').click(function () {
+
+            jQuery(this).closest('div').find('select').show();
+        });
+
+        jQuery('.department_id').change(function () {
+            jQuery(this).closest('form').submit();
+        });
+
+        jQuery('.category_id').change(function () {
+            jQuery(this).closest('form').submit();
+        });
+
+        jQuery('.assigned_to').change(function () {
+            jQuery(this).closest('form').submit();
+        });
+
+        jQuery('.save_closed').click(function () {
+            jQuery(this).closest('form').find('.is_closed').val('1');
+            jQuery(this).closest('form').submit();
+        });
+    });
+</script>
 
 <style>
+
+    .edit_select_wrapper input, .edit_select_wrapper select{
+        display: none;
+    }
+
+    #comment{
+        height: 100px;
+    }
+
+    .ticket-wrapper{
+        background: #FCFCFC;
+    }
+
+    .ticket-wrapper .ticket-single{
+        background: #FFF;
+    }
+
+    .ticket-wrapper .ticket-sidebar h4{
+        margin:15px 5px;
+    }
+
+    .ticket-wrapper .ticket-sidebar{
+        background: #FCFCFC;
+    }
+
+    .ticket-buttons{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .ticket-comment blockquote{
+        border-bottom: 1px dotted #F3F3F3;
+        border-right: 1px dotted #F3F3F3;
+        border-top: 1px dotted #F3F3F3;
+        padding: 0px;
+    }
+    
+    .ticket-comment blockquote .ticket-comment-header{
+        background: #EEE;
+        padding: 5px;
+    }
+
+    .support-ticket-comment blockquote{
+        border-color: #6ffcba;
+    }
+    
+    .support-ticket-comment blockquote .ticket-comment-header{
+        background: #6ffcba;
+    }
+    
+    .ticket-comment-body{
+        padding:10px;
+    }
+    
     #kazi_reply_comments_post{
         width:100% !important;
         max-width:100% !important;

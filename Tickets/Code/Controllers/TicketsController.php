@@ -39,6 +39,18 @@ class TicketsController extends BaseController {
         }
     }
 
+    public function detailAction($id = '', $slug = '') {
+
+        $factory = new KazistFactory();
+
+        $this->data_arr['return_url'] = $factory->generateUrl('tickets.tickets.detail', array('id' => $id));
+        $this->data_arr['category_arr'] = $this->model->getCategoriesJson();
+        $this->data_arr['department_arr'] = $this->model->getDepartmentsJson();
+        $this->data_arr['team_arr'] = $this->model->getTeamsJson();
+        $this->data_arr['comments'] = $this->model->getComments();
+
+        return parent::detailAction($id, $slug);
+    }
     public function saveAction($form_data = '') {
 
         $has_error = false;

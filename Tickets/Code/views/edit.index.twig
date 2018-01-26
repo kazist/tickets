@@ -16,10 +16,13 @@
     {% set item_phone = '' %}
 {% endif %}
 
+<a class="btn btn-success" href="{{ url('tickets.tickets') }}">
+    <i class="fa fa-arrow-left"></i>
+    Back to Listing
+</a>
+    
 <h1 class="component-header">Add/Edit Ticket</h1>
 <hr>
-
-
 
 <form id="main-edit-form" action="{{ generate_url('tickets.tickets.save') }}" class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
     <div class="add-edit-ticket">
@@ -27,15 +30,15 @@
 
         <div class="ticket-detail-form">
             <div class="col-sm-12">
-                <label>Title</label>
-                {{ forms.input('title', 'text', item.title, null, null, null, 'required') }}
-            </div>
-            <div>
                 <div class="col-sm-6">
+                    <label>Title</label>
+                    {{ forms.input('title', 'text', item.title, null, null, null, 'required') }}
+                </div>
+                <div class="col-sm-3">
                     <label>Department</label>
                     {{ forms.input('department_id', 'select', item.department_id, null, null, null, 'required', null, json_object.fields.department_id.parameters.options) }}
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <label>Category</label>
                     {{ forms.input('category_id', 'select', item.category_id, null, null, null, 'required', null, json_object.fields.category_id.parameters.options) }}
                 </div>
@@ -43,67 +46,64 @@
 
             <div class="clearfix"></div>
             <br>
+            <div class="well well-sm">Personal Info </div>
             <div class="col-sm-12">
-                <div class="col-sm-4">
-                    <label>Name</label>
-                    {{ forms.input('name', 'name', item_name, null, null, null, 'required', readonly) }}
-                    <label>Username</label>
-                    {{ forms.input('username', 'username', item_username, null, null, null, 'required', readonly) }}
+                <div class="col-sm-6">
+                    {{ forms.input('name', 'name', item_name, 'Name', null, null, 'required', readonly) }}
+                    {{ forms.input('username', 'username', item_username, 'Username', null, null, 'required', readonly) }}
+                    {{ forms.input('website', 'text', item.website, 'Website', null, null, 'required') }}
                 </div>
-                <div class="col-sm-4">
-                    <label>Email</label>
-                    {{ forms.input('email', 'email', item_email, null, null, null, 'required', readonly) }}
+                <div class="col-sm-6">
+                    {{ forms.input('email', 'email', item_email, 'Email', null, null, 'required', readonly) }}
+                    {{ forms.input('phone', 'phone', item_phone, 'Phone', null, null, 'required', readonly) }}
                 </div>
-                <div class="col-sm-4">
-                    <label>Phone</label>
-                    {{ forms.input('phone', 'phone', item_phone, null, null, null, 'required', readonly) }}
-                </div>
-                <div class="clearfix"></div>
-
-                {% if  document.user.id  %}
-                    {{ forms.input('name', 'hidden', item_name) }}
-                    {{ forms.input('username', 'hidden', item_username) }}
-                    {{ forms.input('email', 'hidden', item_email) }}
-                    {{ forms.input('phone', 'hidden', item_phone) }}
-                {% endif %}
             </div>
             <div class="clearfix"></div>
+
+            {% if  document.user.id  %}
+                {{ forms.input('name', 'hidden', item_name) }}
+                {{ forms.input('username', 'hidden', item_username) }}
+                {{ forms.input('email', 'hidden', item_email) }}
+                {{ forms.input('phone', 'hidden', item_phone) }}
+            {% endif %}
+        </div>
+        <div class="clearfix"></div>
+        <br>
+
+        <div class="col-sm-12">
+            <b>Description: </b>
+            <small>Enter detailed and Understandable Information</small>
             <br>
-
-            <div class="col-sm-12">
-                <b>Description: </b>
-                <small>Enter detailed and Understandable Information</small>
-                <br>
-                {{ forms.input('description', 'editor', item.description, null, null, null, 'required') }}
-            </div>
-
-            <div class="col-sm-12">
-                <b>Attachment</b><br>
-                {{ forms.input('attachment', 'file', item.attachment) }}
-            </div>
-
-            <div class="clearfix"></div>
-            <br>
-
+            {{ forms.input('description', 'editor', item.description, null, null, null, 'required') }}
         </div>
 
-        {% if  document.user.id  %}
-            {{ forms.input('id', 'hidden', item.id) }}
-            <br>
-        {% endif %}
-
-        <div>
-
-
-            <div class="text-center">
-                <a class="btn btn-danger btn-sm" href="{{ generate_url('tickets.tickets') }}" title='Cancel'>Cancel</a>
-                <input class="btn btn-success btn-sm" name="id" type="submit" value="Submit">
-            </div>
-
+        <div class="col-sm-12">
+            <b>Attachment</b><br>
+            {{ forms.input('attachment', 'file', item.attachment) }}
         </div>
+
+        <div class="clearfix"></div>
+        <br>
+
     </div>
 
-    {{ forms.input('_token' ) }} 
+    {% if  document.user.id  %}
+        {{ forms.input('id', 'hidden', item.id) }}
+        <br>
+    {% endif %}
+
+    <div>
+
+
+        <div class="text-center">
+            <a class="btn btn-danger btn-sm" href="{{ generate_url('tickets.tickets') }}" title='Cancel'>Cancel</a>
+            <input class="btn btn-success btn-sm" name="id" type="submit" value="Submit">
+        </div>
+
+    </div>
+</div>
+
+{{ forms.input('_token' ) }} 
 
 </form>
 
