@@ -22,6 +22,16 @@ use Kazist\Controller\BaseController;
 
 class TicketsController extends BaseController {
 
+    public function indexAction($offset = 0, $limit = 10) {
+        
+        $this->data_arr['categoryinput'] = $this->model->getCategoriesJson();
+        $this->data_arr['departmentinput'] = $this->model->getDepartmentsJson();
+        $this->data_arr['assigned_toinput'] = $this->model->getTeamsJson();
+        $this->data_arr['show_action'] = false;
+
+        return parent::indexAction($offset, $limit);
+    }
+
     public function statusAction() {
 
         $id = $this->request->get('id');

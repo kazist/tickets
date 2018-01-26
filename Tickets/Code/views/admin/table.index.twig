@@ -1,0 +1,80 @@
+{% import "form.macro.twig" as forms %}
+
+{{ set_assets('applications/Tickets/assets/js/affiliate.js') }}
+{{ set_assets('applications/Tickets/assets/css/affiliate.css') }}
+
+{% set source_tracked = get_setting('affiliate_payment_source_tracked')|replace({'_':'.'}) %}
+
+<form id="{{ main_form_id }}" action="{{ generate_url('admin.tickets.tickets',{'user_id':user_id}) }}" method="post" >
+
+    <div class="table-responsive">
+        <table width="100%" class="table table-condensed table-bordered">
+            <tbody>
+
+                {% if items|length > 0 %}
+                    {% for item in items %}
+                        <tr>
+                            <td width="20px">
+                                <div class="dropdown">
+                                    <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" href="#" title="More Actions"> <span class="glyphicon glyphicon glyphicon-cog"></span>&nbsp; <span class="caret"></span> </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ generate_url('admin.tickets.tickets.detail', {'id':item.id}) }}" title="Detail">Detail</a></li>
+                                        <li><a href="{{ generate_url('admin.tickets.tickets.delete', {'id':item.id}) }}" title="Delete">Delete</a></li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-header">
+                                            Id : {{ item.id }}<br>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+
+                            <td>
+                                <b>
+                                    <a href="{{ generate_url('admin.tickets.tickets.detail', {'id':item.id}) }}" title="Detail">
+                                        {{ item.title }}
+                                    </a>
+                                </b>
+                                <br>
+                                <b>Cat: </b>{{ item.category_id_title }}
+                                <b>Dept: </b>{{ item.department_id_title }}
+                                <b>To: </b>{{ item.assigned_to_name }}
+                            </td>
+
+                            <td>
+                                <i class="fa fa-user"></i> {{ item.name|default('-') }} ({{ item.username|default('-') }}) &nbsp; &nbsp;
+                                <i class="fa fa-envelope"></i> {{ item.email|default('-') }}<br> 
+                                <i class="fa fa-clock-o"></i>
+                                {% if item.date_created != '0000-00-00 00:00:00' %}
+                                    {{ item.date_created ? item.date_created|date('d M Y H:i:s',  document.timezone) }}
+                                {% endif %} &nbsp; &nbsp;
+                                <i class="fa fa-globe"></i> {{ item.website|default('-') }}<br> 
+                            </td>
+                            
+                            <td>
+                                {% if item.is_closed %}
+                                    <div class="label label-danger text-center">
+                                        Ticket Closed
+                                    </div>
+                                {% else %}
+                                    <div class="label label-success text-center">
+                                        Ticket Open
+                                    </div>
+                                {% endif %}
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="clearfix"></div>
+
+    {% include "items.pagination.twig" %}
+
+    {% include "form.hidden.twig" %}
+
+    {{ forms.input('_token' ) }}  
+
+</form>

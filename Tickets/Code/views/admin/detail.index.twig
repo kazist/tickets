@@ -43,7 +43,7 @@
 
         <div>
             <div class="pull-left">
-                <h4>Comments</h4>
+                <h4>Thread</h4>
             </div>
 
 
@@ -55,12 +55,27 @@
                 <div class="ticket-comment {% if comment.is_support %}support-ticket-comment{% endif %}">
                     <blockquote>
                         <div>
-                            {{ comment.comment|raw }}
+                            <div class="ticket-comment-header">
+                                <div class="col-sm-3">
+                                    <small> 
+                                        {{ comment.name }}
+                                    </small>
+                                </div>
+                                <div class="col-sm-9 text-right">
+                                    <small>
+                                        <i class="fa fa-clock-o"></i>
+                                        {{ comment.date_created|date('d M Y H:i')}}
+                                    </small>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <div class="col-sm-12 ticket-comment-body">
+                                {{ comment.comment|raw }}
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <small>
-                            <i class="fa fa-clock-o"></i>
-                            {{ comment.date_created|date('d M Y H:i')}}
-                        </small>
                     </blockquote>
                 </div>
             {% endfor%}
@@ -86,10 +101,10 @@
                     Save
                 </button>
                 {% if not item.is_closed %}
-                <a class="btn btn-danger btn-sm save_closed" href="#" >
-                    <i class="fa fa-save"></i>
-                    Save & Closed
-                </a>
+                    <a class="btn btn-danger btn-sm save_closed" href="#" >
+                        <i class="fa fa-save"></i>
+                        Save & Closed
+                    </a>
                 {% endif %}
             </div>
 
@@ -201,7 +216,7 @@
         jQuery('.assigned_to').change(function () {
             jQuery(this).closest('form').submit();
         });
-        
+
         jQuery('.save_closed').click(function () {
             jQuery(this).closest('form').find('.is_closed').val('1');
             jQuery(this).closest('form').submit();
@@ -244,12 +259,26 @@
         border-bottom: 1px dotted #F3F3F3;
         border-right: 1px dotted #F3F3F3;
         border-top: 1px dotted #F3F3F3;
+        padding: 0px;
+    }
+    
+    .ticket-comment blockquote .ticket-comment-header{
+        background: #EEE;
+        padding: 5px;
     }
 
     .support-ticket-comment blockquote{
         border-color: #6ffcba;
     }
-
+    
+    .support-ticket-comment blockquote .ticket-comment-header{
+        background: #6ffcba;
+    }
+    
+    .ticket-comment-body{
+        padding:10px;
+    }
+    
     #kazi_reply_comments_post{
         width:100% !important;
         max-width:100% !important;

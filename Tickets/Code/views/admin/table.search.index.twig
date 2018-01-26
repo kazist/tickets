@@ -1,0 +1,116 @@
+{# empty Twig template #}
+
+{% import "form.macro.twig" as forms %}
+
+{{ set_assets('assets/js/moments.js') }}
+{{ set_assets('assets/js/daterangepicker.js') }}
+{{ set_assets('assets/css/daterangepicker.css') }}
+
+{% set search = document.search %}
+{% set start_year = get_setting('system_template_copyright_start_year')|default('2013') %}
+
+<form id="{{ main_form_id }}" action="{{ generate_url('admin.tickets.tickets') }}" method="post" >
+
+
+    <div class="custom-search">
+        <div class="col-sm-2">
+            <br>
+            {% if url_exist('admin.tickets.tickets.add') %}
+                <a class="btn btn-success btn-sm" href="{{ generate_url('admin.tickets.tickets.add') }}">
+                    <span class="glyphicon glyphicon glyphicon-plus"></span> Add
+                </a>
+            {% endif %}
+
+            {% if twig_file != 'recordpicker' %}
+                <span class="dropdown"> 
+                    <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"  href="#">
+                        <span class="glyphicon glyphicon-cog"></span>Actions<span class="caret"></span> 
+                    </a>
+                    <ul class="dropdown-menu">
+                        {#
+                                    <li>
+                                        <a class="kazi-detail" href="#">Show Detail</a>
+                                    </li>
+                                    <li>
+                                        <a class="kazi-edit" href="#">Edit</a>
+                                    </li>
+                                    #}
+                        <li>
+                            <a class="kazi-delete" href="#">Delete</a>
+                        </li>
+                    </ul> 
+                </span>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-2">
+            <b>Keyword</b><br>
+            {{ forms.input(' search.keyword', 'text', search.keyword) }}
+        </div>
+        <div class="col-sm-2">
+            <b>Date Range</b><br>
+            {{ forms.input(' search.createdrange', 'text', search.createdrange|default( start_year ~ '-01-01 - ' ~ 'now'|date('Y-m-d')) ) }}
+        </div>
+        <div class="col-sm-1">
+            <b>Cat:</b><br>
+            {{ forms.input(' search.category_id', 'select', search.category_id, null, null, null, null, null, categoryinput ) }}
+        </div>
+        <div class="col-sm-1">
+            <b>Dept:</b><br>
+            {{ forms.input(' search.department_id', 'select', search.department_id, null, null, null, null, null, departmentinput ) }}
+        </div>
+        <div class="col-sm-1">
+            <b>Assigned:</b><br>
+            {{ forms.input(' search.assigned_to', 'select', search.assigned_to, null, null, null, null, null, assigned_toinput ) }}
+        </div>
+        <div class="col-sm-3">
+            <br>
+            <button class="btn btn-success btn-sm" type="submit" name="submit">Search</button>
+            <button class="btn btn-default btn-sm" type="submit" name="clear" value="clear">Clear</button>
+        </div>
+    </div>
+    {{ forms.input('_token' ) }}  
+
+</form>
+
+
+<div class="clearfix"></div>
+<br>
+
+<script>
+
+
+    jQuery(document).ready(function () {
+        var start = moment().subtract(12, 'months');
+        var end = moment();
+        jQuery('.search_createdrange').daterangepicker({
+            showDropdowns: true,
+            changeMonth: true,
+            changeYear: true,
+            forceParse: false,
+            minDate: '{{ start_year }}-01-01',
+            maxDate: '{{ 'now'|date('Y-m-d') }}',
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                'Last 3 Month': [moment().subtract(3, 'months'), moment()],
+                'Last 6 Month': [moment().subtract(6, 'months'), moment()],
+                'Last 1 Year': [moment().subtract(12, 'months'), moment()],
+                'Last 2 Year': [moment().subtract(24, 'months'), moment()],
+            }
+        });
+    });
+</script>
+
+<style>
+    .custom-search .col-sm-1, .custom-search .col-sm-2, .custom-search .col-sm-3, .custom-search .col-sm-9, .custom-search .col-sm-12{
+        margin:0;
+        padding:0 2px;
+    }
+</style>

@@ -26,13 +26,28 @@ class TicketsModel extends BaseModel {
 
     public function appendSearchQuery($query) {
 
-        $factory = new KazistFactory();
+        $document = $this->container->get('document');
 
+        $factory = new KazistFactory();
         $user = $factory->getUser();
+
+        $query = parent:: appendSearchQuery($query);
+
+        if (!empty($this->search)) {
+            $search = $this->search;
+        } else {
+            $search = $document->search;
+        }
+
+        $createdrange_arr = explode(' - ', $search['createdrange']);
+
+        if ($search['createdrange'] <> '' && !empty($createdrange_arr)) {
+            $search['date_created']['start'] = date('Y-m-d 00:00:00', strtotime($createdrange_arr[0]));
+            $search['date_created']['end'] = date('Y-m-d 23:59:59', strtotime($createdrange_arr[1]));
+        }
 
         if (!WEB_IS_ADMIN) {
 
-            $query = parent:: appendSearchQuery($query);
 
             if ($user->id) {
                 $query->where('tt.created_by=' . $user->id);
@@ -103,6 +118,8 @@ class TicketsModel extends BaseModel {
         }
 
         $query = $factory->getQueryBuilder('tickets_tickets_comments', 'ttc', array('ttc.ticket_id=:ticket_id'), array('ticket_id' => $ticket_id));
+        $query->addSelect('uu.name, uu.username, uu.email');
+        $query->addOrderBy('ttc.id','ASC');
         $comments = $query->loadObjectList();
 
         return $comments;
@@ -125,6 +142,7 @@ class TicketsModel extends BaseModel {
             }
 
             $this->sendEmailToDepartment($form, $ticket, $id);
+            $this->sendEmailToOwner($form, $ticket, $id);
         }
 
         return $id;
@@ -168,6 +186,22 @@ class TicketsModel extends BaseModel {
 
                 $email->sendDefinedLayoutEmail('tickets.tickets.admin.added', $member->email, $parameters);
             }
+        }
+    }
+
+    public function sendEmailToOwner($form, $ticket, $id) {
+
+        $email = new Email();
+        $factory = new KazistFactory();
+
+        if ($id && !$form['id']) {
+
+            $ticket = ($ticket != '') ? $ticket : parent::getRecord($id);
+
+            $parameters = array();
+            $parameters['ticket'] = $ticket;
+
+            $email->sendDefinedLayoutEmail('tickets.tickets.owner.added', $ticket->email, $parameters);
         }
     }
 

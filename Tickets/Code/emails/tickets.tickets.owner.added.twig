@@ -1,0 +1,39 @@
+Dear {{ ticket.name }},
+<br>
+<br>
+<div style="background:#EFEFEF; padding:5px 10px ; font-size:18px;">
+    Ticket [{{ ticket.id }}]: <b>{{ ticket.title|raw }}</b>  
+</div>
+
+<br>
+<br>
+Thank you for submiting a ticket.
+<br>
+We will get back to you within 24 hours.
+<br><br>
+Below are details that you submited.
+<br>
+
+<br>
+<b><i><u>Title:</u></i></b>
+<br>
+{{ ticket.title|raw }}.
+<br>
+<br>
+<b><i><u>Ticket:</u></i></b>
+<br>
+<p>
+    {{ ticket.description|raw|nl2br }}
+</p>
+<br>
+<b><i><u>User Detail:</u></i></b>
+<br>
+<b>Name:</b> {{ ticket.name }}<br>
+<b>Username:</b> {{ ticket.username }}<br>
+<b>Email:</b> {{ ticket.email }}<br>
+<b>Phone:</b> {{ ticket.phone }}<br>
+
+<br>
+
+<br>
+Thank You
