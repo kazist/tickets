@@ -73,17 +73,11 @@ class CommentsModel extends BaseModel {
 
             $comment = ($comment != '') ? $comment : parent::getRecord($id);
 
-            $member_query = $factory->getQueryBuilder('#__users_users', 'uu', array('id=:id'), array('id' => $ticket->created_by));
-            $members = $member_query->loadObjectList();
+            $parameters = array();
+            $parameters['ticket'] = $ticket;
+            $parameters['comment'] = $comment;
 
-            foreach ($members as $member) {
-
-                $parameters = array();
-                $parameters['user'] = $member;
-                $parameters['comment'] = $comment;
-
-                $email->sendDefinedLayoutEmail('tickets.tickets.owner.comment', $member->email, $parameters);
-            }
+            $email->sendDefinedLayoutEmail('tickets.tickets.owner.comment.add', $ticket->email, $parameters);
         }
     }
 
