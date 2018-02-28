@@ -50,7 +50,8 @@ class TicketsModel extends BaseModel {
 
 
             if ($user->id) {
-                $query->where('tt.created_by=' . $user->id);
+                $query->where('tt.created_by=:user_id');
+                $query->setParameter('user_id', (int) $user->id);
             }
 
             $query->orderBy('tt.id ', 'DESC');
@@ -119,7 +120,7 @@ class TicketsModel extends BaseModel {
 
         $query = $factory->getQueryBuilder('tickets_tickets_comments', 'ttc', array('ttc.ticket_id=:ticket_id'), array('ticket_id' => $ticket_id));
         $query->addSelect('uu.name, uu.username, uu.email');
-        $query->addOrderBy('ttc.id','ASC');
+        $query->addOrderBy('ttc.id', 'ASC');
         $comments = $query->loadObjectList();
 
         return $comments;
