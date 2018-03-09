@@ -88,14 +88,9 @@
             <div class="ticket-submit-button text-center">
                 <button class="btn btn-success btn-sm" name="id"  type="submit">
                     <i class="fa fa-save"></i>
-                    Save
+                    Submit
                 </button>
-                {% if not item.is_closed %}
-                    <a class="btn btn-danger btn-sm save_closed" href="#" >
-                        <i class="fa fa-save"></i>
-                        Save & Closed
-                    </a>
-                {% endif %}
+               
             </div>
 
             {{ forms.input('_token' ) }} 

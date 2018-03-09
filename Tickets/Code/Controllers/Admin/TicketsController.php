@@ -22,8 +22,25 @@ use Kazist\Controller\BaseController;
 
 class TicketsController extends BaseController {
 
+    public function dashboardAction() {
+
+        $factory = new KazistFactory();
+        $user = $factory->getUser();
+
+        $dashboard = $this->model->getDashboard();
+
+        $data_arr['dashboard'] = $dashboard;
+        $data_arr['hostings'] = $this->model->getHostings($user->id);
+
+        $this->html = $this->render('Hosting:Merge:Code:views:dashboard.index.twig', $data_arr);
+
+        $response = $this->response($this->html);
+
+        return $response;
+    }
+
     public function indexAction($offset = 0, $limit = 10) {
-        
+
         $this->data_arr['categoryinput'] = $this->model->getCategoriesJson();
         $this->data_arr['departmentinput'] = $this->model->getDepartmentsJson();
         $this->data_arr['assigned_toinput'] = $this->model->getTeamsJson();

@@ -1,0 +1,108 @@
+{# empty Twig template #}
+
+{{ set_assets('applications/Hosting/assets/js/hosting.js') }}
+{{ set_assets('applications/Hosting/assets/js/owl.carousel.min.js') }}
+
+{{ set_assets('applications/Hosting/assets/css/hosting.css') }}
+{{ set_assets('applications/Hosting/assets/css/owl.carousel.min.css') }}
+
+{{ set_assets('applications/Hosting/assets/css/domain-wizard.css') }}
+{{ set_assets('applications/Hosting/assets/js/domain-wizard.js') }}
+
+
+{% set path_set = addTwigPath( "applications.Hosting.Merge.Code.views.admin.dashboard") %}
+
+<div class="dashboard-hosting">
+
+    <div class="col-md-12">
+        <div class="search_domain_form">
+            <div class="search_domain_form-wrap" style="max-width:450px;">
+                <form action="{{ generate_url('hosting.purchase.save') }}" class="form-horizontal" method="post">
+
+                    <div class="text-center text-uppercase">
+                        <b>Search for Domain</b>
+                    </div>
+
+                    <div class="input-group search_domain">
+                        <input type="text" class="form-control domain" name="form[domain]" placeholder="Search for Domain" required="required">
+                        <select  class="form-control price" name="form[tld]">
+                            {% for price in prices%}
+                                <option value="{{ price.tld }}">{{ price.tld }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning search-domain-btn" type="button">
+                                <span class="hidden-xs">  Search For Domain</span>
+                                <span class="visible-xs"> Search</span>
+                            </button>
+                        </span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    {% include "summary.status.twig" ignore missing with {'dashboard': dashboard } %}
+
+    <div>
+        <div class="col-md-6 bg-important">
+            <div>
+                <h4> Servers</h4>
+                {% include "summary.servers.twig" ignore missing with {'dashboard': dashboard } %}
+            </div>
+        </div>
+
+        <div class="col-md-6 bg-important">
+            <div>
+                <h4>Registrars</h4>
+                {% include "summary.registrars.twig" ignore missing with {'dashboard': dashboard } %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 bg-important">
+        <div>
+            <h4>New Templates</h4>
+            {% include "summary.templates.twig" ignore missing with {'dashboard': dashboard } %}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dashboard-hosting .bg-important {
+        margin-top: 15px;
+    }
+    
+    .domain-statistics{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .search_domain_form .search_domain_form-wrap{
+        margin: 0 auto;
+    }
+
+    .search_domain_form{
+        margin-top:15px;
+        margin-bottom:10px;
+        padding: 10px;
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#91e9f7+0,00c9db+50,91e9f7+100 */
+        background: #91e9f7; /* Old browsers */
+        background: -moz-linear-gradient(top, #91e9f7 0%, #00c9db 50%, #91e9f7 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #91e9f7 0%,#00c9db 50%,#91e9f7 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #91e9f7 0%,#00c9db 50%,#91e9f7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#91e9f7', endColorstr='#91e9f7',GradientType=0 ); /* IE6-9 */
+
+        border: 1px solid #50E58E;
+    }
+
+    .search_domain .price, .search_domain .search-domain-btn{
+        margin-top: 5px;
+    }
+</style>
+

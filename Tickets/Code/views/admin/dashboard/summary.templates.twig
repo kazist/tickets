@@ -1,0 +1,25 @@
+
+<div class="owl-carousel dashboard-templates">
+
+    {% if dashboard.templates|length>0 %}
+        {% for template in dashboard.templates %}
+
+            {% set testimonial_url = generate_url('hosting.templates.detail', {id:template.id}) %}
+
+            <div class="item">
+                <div class="dashboard-template">
+                    <div class="dashboard-template-image-wrapper">
+                        <a href="{{ testimonial_url }}">
+                            <img src="{{ template.image_file }}">
+                        </a>
+                    </div>
+                    <a class="btn btn-success btn-xs" href="{{ testimonial_url }}">
+                        {{ template.title }}
+                    </a>
+                </div>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+</div>

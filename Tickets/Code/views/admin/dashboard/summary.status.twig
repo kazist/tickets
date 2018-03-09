@@ -1,0 +1,71 @@
+
+<div class="domain-statistics">
+    <div class="col-sm-3">
+        <div class="domain-statistic">
+            <div class="statistic-icon bg-green">
+                <i class="fa fa-database"></i>
+            </div>
+            <div class="statistic-info">
+                <span class="statistic-info-head">Paid</span>
+                <span class="statistic-info-number">
+                    {{ dashboard.paid_count|number_format()}}
+                </span>
+                <span class="statistic-info-body">
+                    <a class="btn btn-primary btn-sm" href="{{ generate_url('hosting.hosting',{'paid':1}) }}"> View Paid</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="domain-statistic">
+            <div class="statistic-icon bg-aqua">
+                <i class="fa fa-database"></i>
+            </div>
+            <div class="statistic-info">
+                <span class="statistic-info-head">Not Paid</span>
+                <span class="statistic-info-number">
+                    {{ dashboard.notpaid_count|number_format()}}
+                </span>
+                <span class="statistic-info-body">
+                    <a class="btn btn-primary btn-sm" href="{{ generate_url('hosting.hosting',{'paid':0}) }}"> View Not Paid</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="domain-statistic">
+            <div class="statistic-icon bg-yellow">
+                <i class="fa fa-database"></i>
+            </div>
+            <div class="statistic-info">
+                <span class="statistic-info-head">Not Live</span>
+                <span class="statistic-info-number">
+                    {{ dashboard.notlive_count|number_format()}}
+                </span>
+                <span class="statistic-info-body">
+                    <a class="btn btn-primary btn-sm" href="{{ generate_url('hosting.hosting',{'is_live':0}) }}"> View Not Live</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="domain-statistic">
+            <div class="statistic-icon bg-red">
+                <i class="fa fa-globe"></i>
+            </div>
+            <div class="statistic-info">
+                <span class="statistic-info-head">Removed</span>
+                <span class="statistic-info-number">
+                    {{ dashboard.removed_count|number_format()}}
+                </span>
+                <span class="statistic-info-body">
+                    <a class="btn btn-primary btn-sm" href="{{ generate_url('hosting.domains') }}"> View Removed</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+
+<div class="clearfix"></div>

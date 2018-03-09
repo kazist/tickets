@@ -39,6 +39,14 @@
 
         <div>
             {{ item.description|raw }}
+
+            {% if item.attachment_file != '' %}
+
+                <a href="{{ web_root ~ item.attachment_file }}" target="_blank">
+                    <img class="comment-img" src="{{ resized_image(item.attachment_file, 300) }}">
+                </a>
+
+            {% endif %}
         </div>
 
         <div>
@@ -54,6 +62,7 @@
             {% for comment in comments %}
                 <div class="ticket-comment {% if comment.is_support %}support-ticket-comment{% endif %}">
                     <blockquote>
+
                         <div>
                             <div class="ticket-comment-header">
                                 <div class="col-sm-3">
@@ -73,6 +82,13 @@
 
                             <div class="col-sm-12 ticket-comment-body">
                                 {{ comment.comment|raw }}
+                                {% if comment.attachment_file != '' %}
+
+                                    <a href="{{ web_root ~ comment.attachment_file }}" target="_blank">
+                                        <img class="comment-img" src="{{ resized_image(comment.attachment_file, 300) }}">
+                                    </a>
+
+                                {% endif %}
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -98,14 +114,9 @@
             <div class="ticket-submit-button text-center">
                 <button class="btn btn-success btn-sm" name="id"  type="submit">
                     <i class="fa fa-save"></i>
-                    Save
+                    Submit
                 </button>
-                {% if not item.is_closed %}
-                    <a class="btn btn-danger btn-sm save_closed" href="#" >
-                        <i class="fa fa-save"></i>
-                        Save & Closed
-                    </a>
-                {% endif %}
+
             </div>
 
             {{ forms.input('_token' ) }} 
@@ -261,7 +272,7 @@
         border-top: 1px dotted #F3F3F3;
         padding: 0px;
     }
-    
+
     .ticket-comment blockquote .ticket-comment-header{
         background: #EEE;
         padding: 5px;
@@ -270,15 +281,19 @@
     .support-ticket-comment blockquote{
         border-color: #6ffcba;
     }
-    
+
     .support-ticket-comment blockquote .ticket-comment-header{
         background: #6ffcba;
     }
-    
+
     .ticket-comment-body{
         padding:10px;
     }
-    
+
+    .ticket-comment-body .comment-img{
+        max-width: 450px;
+    }
+
     #kazi_reply_comments_post{
         width:100% !important;
         max-width:100% !important;

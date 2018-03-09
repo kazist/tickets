@@ -1,0 +1,54 @@
+<div class="table-responsive">
+    <table class="table table-condensed table-bordered">
+        <thead>
+            <tr>
+                <th>Domain</th>
+                <th>Expiry Date</th>
+                <th align="center">Active</th>
+                <th align="center">Action</th>
+            </tr>
+        </thead> 
+        <tbody>
+            {% if dashboard.domains|length>0 %}
+                {% for hosting in dashboard.domains %}
+                    <tr>
+                        <td>{{ hosting.domain }}</td>
+                        <td>{{ hosting.expiry_date }}</td>
+                        <td align="center">
+                            {% if hosting.status  %}
+                                <label class="label label-success">
+                                    Yes
+                                </label>
+                            {%else%}
+                                <label class="label label-default">
+                                    No
+                                </label>
+                            {%endif%}
+                        </td>
+                        <td align="center">
+                            {% if hosting.status %}
+                                {% if date(hosting.expiry_date) < date('+1months') %}
+                                    <a class="btn btn-primary" href="{{ generate_url('hosting.domains.payment', {'id':hosting.id})}}">
+                                        <i class="fa fa-credit-card"></i>
+                                        Renew
+                                    </a>
+                                {% else %}
+                                    {{ hosting.expiry_date|timeago }}
+                                {% endif %}
+                            {% else %}
+                                <a class="btn btn-danger" href="{{ generate_url('hosting.domains.delete', {'id':hosting.id})}}">
+                                    <i class="fa fa-times"></i>
+                                    Delete
+                                </a>
+                                <a class="btn btn-primary" href="{{ generate_url('hosting.domains.payment', {'id':hosting.id})}}">
+                                    <i class="fa fa-credit-card"></i>
+                                    Upgrade
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>

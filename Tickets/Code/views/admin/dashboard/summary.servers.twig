@@ -1,0 +1,16 @@
+<div>
+    {% if dashboard.servers|length>0 %}
+        {% for server in dashboard.servers %}
+
+            <div class="progress-group">
+                <span class="progress-text">{{ server.title }}({{ server.domain }})</span>
+                <span class="progress-number"><b>{{ server.total_accounts }}</b>/{{ server.limiting }}</span>
+
+                <div class="progress sm">
+                    <div class="progress-bar progress-bar-aqua" style="width: {{ server.total_accounts/server.limiting*100 }}%"></div>
+                </div>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+</div>
